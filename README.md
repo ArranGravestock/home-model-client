@@ -1,2 +1,1 @@
-# home-model
-# home-model
+# Home Model for Security and Automation in IoT
