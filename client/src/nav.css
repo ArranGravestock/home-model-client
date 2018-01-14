@@ -18,7 +18,7 @@
 
 .nav-sidebar-active {
     box-shadow: inset 5px 0 0 #5b5; /*preserves title inline*/
-    background-color: #cfcfcf !important;
+    background-color: #c4c4c4 !important;
 }
 
 .nav-sidebar-list > li {
@@ -34,29 +34,37 @@
     text-transform: capitalize;
 }
 
+.nav-sidebar-list > li > a:hover {
+    color: #fff;
+}
+
+.nav-sidebar-list > li > a > span {
+    padding-right: .5em;
+}
+
 .nav-sidebar-list > li:hover {
     background-color: #bbb;
 }
 
 .nav-sidebar_title {
-    font-weight: bold;
-    font-size: 2em;
-    color: #f2f2f2;
-    background-color: #333 !important;
     text-align: center !important;
     padding: .5em;
+
     border-bottom: none !important;
+    background-color: #333 !important;
+    color: #f2f2f2;
+    font-weight: bold;
+    font-size: 2em;
     text-transform: uppercase;
 }
 
 /*states for hiding and displaying elements*/
 .nav-hidden-true {
     width: 30%;
-    min-width: 12em;
+    min-width: 14em;
     max-width: 20em;
 }
 
 .nav-hidden-false {
     width: 0px;
 }
-
