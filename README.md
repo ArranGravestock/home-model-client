@@ -13,6 +13,6 @@ C
 AWS IoT
 
 ## Dependencies
--font-awesome
--React router
--Chart.js
+- font-awesome
+- React router
+- Chart.js
