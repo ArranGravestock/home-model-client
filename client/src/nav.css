@@ -13,6 +13,7 @@
     /*causes issues with min-max width in transitioning...
     transition: width .3s ease-in-out;
     */
+    transition: max-width 0.3s ease;
     
 }
 
@@ -32,10 +33,11 @@
     text-decoration: none;
     padding: 1em;
     text-transform: capitalize;
+    user-select: none;
 }
 
 .nav-sidebar-list > li > a:hover {
-    color: #fff;
+    color: rgb(206, 48, 48);
 }
 
 .nav-sidebar-list > li > a > span {
@@ -56,6 +58,7 @@
     font-weight: bold;
     font-size: 2em;
     text-transform: uppercase;
+    user-select: none;
 }
 
 /*states for hiding and displaying elements*/
@@ -67,4 +70,9 @@
 
 .nav-hidden-false {
     width: 0px;
+}
+
+/*desktop nav pushes instead of overlay*/
+@media (min-width: 768px) {
+
 }

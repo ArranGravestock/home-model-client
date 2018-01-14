@@ -13,4 +13,6 @@
     text-decoration: none;
     color: #333;
     text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
 }

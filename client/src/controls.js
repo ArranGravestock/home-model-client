@@ -16,22 +16,21 @@ class Controls extends Component {
     handleClick() {
         this.setState(prevState => ({
             toggled: !prevState.toggled
-        }));
+        }))
     }
 
     render() {
-        var toggleActive = `nav-hidden-${this.state.toggled}`
         return (
         <div>
             <ul className="controls">
-                <li className={`nav-control-${this.state.toggled}`} onClick={this.handleClick}>
-                    <a href="#nav-control">{this.state.toggled ? 'close' : 'menu'}</a>
+                <li onClick={this.handleClick}>
+                    <a>{this.state.toggled ? 'close' : 'menu'}</a>
                 </li>
-                <li className="controls-settings"><a href="#settings">settings</a></li>
+                <li><a>settings</a></li>
             </ul>
-            <Nav className={toggleActive} onClick={this.handleClick}/>
+            <Nav className={`nav-hidden-${this.state.toggled}`} onClick={this.handleClick}/>
         </div>
-        );
+        )
     }
 }
 
