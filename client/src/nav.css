@@ -13,7 +13,9 @@
     /*causes issues with min-max width in transitioning...
     transition: width .3s ease-in-out;
     */
-    transition: max-width 0.3s ease;
+    transition: all 0.3s ease-in-out;
+
+    white-space: nowrap;
     
 }
 
@@ -69,10 +71,34 @@
 }
 
 .nav-hidden-false {
+    min-width: 0;
+    max-width: 0;
     width: 0px;
 }
 
 /*desktop nav pushes instead of overlay*/
 @media (min-width: 768px) {
 
+}
+
+/*change em size for each screen*/
+@media (min-width: 1920px) {
+    body {
+        font-size: 32px;
+    }
+    .nav-hidden-true {
+        max-width: none;
+    }
+}
+
+@media (min-width: 3840px) {
+    body {
+        font-size: 64px;
+    }
+}
+
+@media (min-width: 7680px) {
+    body {
+        font-size: 128px;
+    }
 }
