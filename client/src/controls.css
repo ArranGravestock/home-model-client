@@ -1,0 +1,16 @@
+.controls {
+    display: flex;
+    background-color: #fff;
+    justify-content: flex-end;
+}
+
+.controls > li {
+    padding: 1.5em;
+    
+}
+
+.controls > li > a {
+    text-decoration: none;
+    color: #333;
+    text-transform: uppercase;
+}

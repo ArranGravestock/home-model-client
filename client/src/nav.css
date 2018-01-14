@@ -1,0 +1,62 @@
+.nav-sidebar {
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    position: fixed;
+
+    border-right: 1px solid #a2a2a2;
+    letter-spacing: .25px;
+    height: 100vh;
+    background-color: #ddd;
+    
+    /*causes issues with min-max width in transitioning...
+    transition: width .3s ease-in-out;
+    */
+    
+}
+
+.nav-sidebar-active {
+    box-shadow: inset 5px 0 0 #5b5; /*preserves title inline*/
+    background-color: #cfcfcf !important;
+}
+
+.nav-sidebar-list > li {
+    text-align: left;
+    border-bottom: 1px solid #a2a2a2;
+}
+
+.nav-sidebar-list > li > a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 1em;
+    text-transform: capitalize;
+}
+
+.nav-sidebar-list > li:hover {
+    background-color: #bbb;
+}
+
+.nav-sidebar_title {
+    font-weight: bold;
+    font-size: 2em;
+    color: #f2f2f2;
+    background-color: #333 !important;
+    text-align: center !important;
+    padding: .5em;
+    border-bottom: none !important;
+    text-transform: uppercase;
+}
+
+/*states for hiding and displaying elements*/
+.nav-hidden-true {
+    width: 30%;
+    min-width: 12em;
+    max-width: 20em;
+}
+
+.nav-hidden-false {
+    width: 0px;
+}
+
