@@ -7,18 +7,14 @@ import Doors from './doors';
 import Water from './water';
 import Gas from './gas';
 
-class Wrapper extends Component {
-    render() {
-      return (
-        <div className="wrapper">
-            <Route exact path="/" component={Home}/>
-            <Route path="/lights" component={Lights}/>
-            <Route path="/doors" component={Doors}/>
-            <Route path="/water" component={Water}/>
-            <Route path="/gas" component={Gas}/>
-        </div>
-      )
-    }
-}
+const Wrapper = () => (
+  <div className="wrapper">
+    <Route exact path="auth/" component={Home}/>
+    <Route path="/auth/lights" component={Lights}/>
+    <Route path="/auth/doors" component={Doors}/>
+    <Route path="/auth/water" component={Water}/>
+    <Route path="/auth/gas" component={Gas}/>
+  </div>
+)
 
 export default Wrapper;

@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import Controls from './controls';
 import Wrapper from './wrapper';
-import {BrowserRouter as Router} from 'react-router-dom';
+import LoginForm from './login';
+import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Controls/>
-          <Wrapper/>
-        </div>
-      </Router>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div className="App">
+      <Route path="/login" component={LoginForm}/>
+      <Route path="/auth" component={Controls}/>
+    </div>
+  </Router>
+)
 
 export default App;

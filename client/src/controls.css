@@ -6,13 +6,12 @@
 
 .controls > li {
     padding: 1.5em;
-    
+    text-transform: uppercase;
 }
 
 .controls > li > a {
     text-decoration: none;
     color: #333;
-    text-transform: uppercase;
     cursor: pointer;
     user-select: none;
 }
