@@ -5,13 +5,17 @@ const React = require('react')
 const FontAwesome = require('react-fontawesome')
 
 const listItems = [
-  {link: "/auth/", icon: "home", name: "home"},
-  {link: "/auth/lights", icon: "lightbulb-o", name: "lights"},
-  {link: "/auth/doors", icon: "arrow-right", name: "doors"},
-  {link: "/auth/water", icon: "tint", name: "water"},
-  {link: "/auth/gas", icon: "fire", name: "gas"},
+  {link: "/", icon: "home", name: "home"},
+  {link: "/", icon: "calendar", name: "data logging"},
+  {link: "/", icon: "user", name: "movement detection"},
+  {link: "/lights", icon: "lightbulb-o", name: "lights"},
+  {link: "/doors", icon: "lock", name: "doors"},
+  {link: "/water", icon: "tint", name: "water"},
+  {link: "/gas", icon: "fire", name: "gas"},
+  {link: "/", icon: "thermometer-half", name: "temperature"},
+  {link: "/", icon: "cloud", name: "humidity"},
 ].map((item, i) => 
-  <li key={i} onClick={item.onClick}><Link to={item.link}><FontAwesome name={item.icon}/>{item.name}</Link></li>
+  <li key={i} onClick={item.onClick}><Link to={`/auth${item.link}`}><FontAwesome name={item.icon}/>{item.name}</Link></li>
 )
 
 const Nav = ({className}) => (
