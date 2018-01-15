@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import './controls.css';
 import Nav from './nav';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import Wrapper from './wrapper';
+import {fakeAuth} from './privateroute';
+
+const AuthButton = withRouter(({ history }) => (
+
+    fakeAuth.isAuthenticated ? (
+        <li onClick={() => {
+          fakeAuth.signout(() => history.push('/login'))
+        }}>logout</li>
+    ) : (
+      <p>UNAUTHED!!</p>
+    )
+))
 
 class Controls extends Component {
 
@@ -19,11 +31,11 @@ class Controls extends Component {
         this.setState(prevState => ({
             toggled: !prevState.toggled
         }))
-    }
-    
+    }    
 
     render() {
         return (
+            
         <div>
             <div>
                 <ul className="controls">
@@ -31,7 +43,7 @@ class Controls extends Component {
                         {this.state.toggled ? 'close' : 'menu'}
                     </li>
                     <li><Link to="/auth/settings">settings</Link></li>
-                    <li><Link to="/login">logout</Link></li>
+                    <AuthButton/>
                 </ul>
                 <Nav className={`nav-hidden-${this.state.toggled}`} onClick={this.handleClick}/>
                 

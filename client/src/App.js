@@ -4,6 +4,7 @@ import Controls from './controls';
 import LoginForm from './login';
 import {TextCard} from './card';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {PrivateRoute} from './privateroute';
 
 const NoMatch = ({location}) => (
   <div>
@@ -16,7 +17,7 @@ const App = () => (
     <div className="App">
       <Switch>
         <Route path="/login" component={LoginForm}/>
-        <Route path="/auth" component={Controls}/>
+        <PrivateRoute path="/auth" component={Controls}/>
         <Route component={NoMatch}/>
       </Switch>
     </div>
