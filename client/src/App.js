@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Controls from './controls';
-import Wrapper from './wrapper';
 import LoginForm from './login';
-import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 const App = () => (
   <Router>
