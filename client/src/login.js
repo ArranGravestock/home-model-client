@@ -2,18 +2,6 @@ import React, { Component } from 'react';
 import {Link, withRouter, Redirect} from 'react-router-dom';
 import {fakeAuth, PrivateRoute} from './privateroute';
 
-const AuthButton = withRouter(({ history }) => (
-    fakeAuth.isAuthenticated ? (
-      <p>
-        Welcome! <button onClick={() => {
-          fakeAuth.signout(() => history.push('/'))
-        }}>Sign out</button>
-      </p>
-    ) : (
-      <p>You are not logged in.</p>
-    )
-))
-
 class LoginForm extends Component {
     state = {
         redirectToReferrer: false
