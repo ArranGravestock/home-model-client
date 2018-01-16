@@ -1,0 +1,58 @@
+.login h1 {
+    text-align: left;
+}
+
+.login-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-controls { 
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.login-controls > input {
+    margin-bottom: 1.5em;
+    border: 1px solid #d2d2d2;
+    height: 1.25em;
+    border-radius: 2px;
+    transition: border .5s ease;
+    padding: .5em;
+    width: calc(100% - 1em - 2px);
+}
+
+.login-controls > input:focus {
+    outline: none;
+    border: 1px solid #aaa;
+}
+
+.login-controls > label {
+    font-size: .8em;
+}
+
+.login-controls > button {
+    padding: .5em;
+    width: 4em;
+    border: none;
+    background-color: #3498db;
+    border-radius: 5px;
+    font-size: 1em;
+    float: right;
+}
+
+.login-controls > button > a {
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.login-controls > button:hover {
+    cursor: pointer;
+}
+
+.login-controls > button:visited {
+    text-decoration: none;
+}
