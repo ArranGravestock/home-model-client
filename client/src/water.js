@@ -1,6 +1,8 @@
 import React from 'react';
 import {ChartCard, TextCard} from './card';
 
+//Chart.defaults.global.responsive = true;
+
 const LineChart = require("react-chartjs").Line;
 const PieChart = require("react-chartjs").Doughnut;
 
@@ -27,6 +29,8 @@ const PieChartData = [
 
 const PieChartOptions = {
   segmentShowTroke: true,
+  maintainAspectRatio: true,
+  responsive: true,
 }
       
 
@@ -55,17 +59,19 @@ const LineChartData = {
     }
   ]
 };
+
 const LineChartOptions = {
-  scaleShowGridLines: true,
+  responsive: true,
+  maintainAspectRatio: true,
 }
 
 const Water = () => (
-  <div>
-    <ChartCard title="water" description="Some description of the line chart" chart={<LineChart data={LineChartData} options={LineChartOptions} width="800" height="250"/>}/>
-    <ChartCard title="water" description="Some description of the line chart" chart={<PieChart data={PieChartData} options={PieChartOptions} width="250" height="250"/>}/>
-    <TextCard title="some title" description="some description"/>
-    <TextCard title="some title" description="some description"/>
-    <TextCard title="some title" description="some description"/>
+  <div className="wrapper">
+    <ChartCard title="water" chart={<LineChart data={LineChartData} options={LineChartOptions} />}/>
+    <ChartCard title="water" chart={<PieChart data={PieChartData} options={PieChartOptions} width="250" height="250"/>}/>
+    <TextCard title="some title" desc="some description"/>
+    <TextCard title="some title" desc="some description"/>
+    <TextCard title="some title" desc="some description"/>
   </div>
 )
 

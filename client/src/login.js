@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Link, withRouter, Redirect} from 'react-router-dom';
-import {fakeAuth, PrivateRoute} from './privateroute';
+import {Link, Redirect} from 'react-router-dom';
+import {fakeAuth} from './privateroute';
 
 class LoginForm extends Component {
     state = {

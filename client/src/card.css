@@ -1,0 +1,14 @@
+.card > h1 {
+    font-size: 1.25em;
+    padding: .5em 0 .25em 0;
+    margin-bottom: .5em;
+    text-transform: capitalize;
+    border-bottom: 1px solid #ccc;
+}
+
+.card {
+    padding: 1em;
+    margin: 1em;
+    background-color: #f7f7f7;
+    box-shadow: 5px 5px 10px #666;
+}
