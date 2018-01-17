@@ -67,7 +67,7 @@ const LineChartOptions = {
 
 const Water = () => (
   <div className="wrapper">
-    <ChartCard title="water" chart={<LineChart data={LineChartData} options={LineChartOptions} />}/>
+    <ChartCard title="water" chart={<LineChart data={LineChartData} options={LineChartOptions} width="600"/>}/>
     <ChartCard title="water" chart={<PieChart data={PieChartData} options={PieChartOptions} width="250" height="250"/>}/>
     <TextCard title="some title" desc="some description"/>
     <TextCard title="some title" desc="some description"/>

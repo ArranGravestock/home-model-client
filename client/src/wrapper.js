@@ -9,7 +9,7 @@ import Gas from './gas';
 
 const Wrapper = () => (
   <div className="wrapper">
-    <Route exact path="auth/" component={Home}/>
+    <Route path="/auth/home" component={Home}/>
     <Route path="/auth/lights" component={Lights}/>
     <Route path="/auth/doors" component={Doors}/>
     <Route path="/auth/water" component={Water}/>

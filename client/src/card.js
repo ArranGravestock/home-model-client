@@ -1,5 +1,7 @@
-import React from 'react';
 import './card.css';
+
+const React = require('react')
+const FontAwesome = require('react-fontawesome')
 
 const ChartCard = ({chart, title}) => (
     <div className="card card-chart">
@@ -8,10 +10,10 @@ const ChartCard = ({chart, title}) => (
     </div>
 )
 
-const TextCard = ({title, desc}) => (
+const TextCard = ({title, desc, state}) => (
     <div className="card card-text">
         <h1>{title}</h1>
-        <p>{desc}</p>
+        <p className={(state==="locked") ? "state-locked" : "state-unlocked"}>{desc}</p>
     </div>
 )
 
@@ -23,4 +25,14 @@ const MiscCard = ({obj, title, desc}) => (
     </div>
 )
 
-export {ChartCard, TextCard, MiscCard};
+const StatsCard = ({title, stats, type}) => (
+    <div className="card card-stats">
+        <h2>{title}</h2>
+        <h1>{stats}</h1>
+        <FontAwesome className={type} name={(type==="stats-up") ? "long-arrow-up" : "long-arrow-down"}/>
+        <span className={type}>12.3%</span>
+        <span>this month</span>
+    </div>
+)
+
+export {ChartCard, TextCard, MiscCard, StatsCard};

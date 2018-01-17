@@ -1,7 +1,7 @@
 .nav-sidebar {
     z-index: 1;
     top: 0;
-    left: 0;
+    left: -1px; /*0px border means you can change nav without opening*/
     overflow-x: hidden;
     position: fixed;
 
@@ -39,7 +39,7 @@
 }
 
 .nav-sidebar-list > li > a:hover {
-    color: rgb(206, 48, 48);
+    color: rgb(34, 86, 197);
 }
 
 .nav-sidebar-list > li > a > span {

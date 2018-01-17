@@ -12,3 +12,24 @@
     background-color: #f7f7f7;
     box-shadow: 5px 5px 10px #666;
 }
+
+.card-stats > h1 {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding: 0.5em 0 0.5em 0;
+    font-weight: bold;
+    font-size: 2em;
+}
+.card-text > .state-unlocked,
+.card-stats > .stats-down {
+    color: rgb(214, 59, 59);
+}
+
+.card-text > .state-locked,
+.card-stats > .stats-up {
+    color: rgb(32, 167, 32);
+}
+
+.card-stats > span {
+    padding-left: .25em;
+}

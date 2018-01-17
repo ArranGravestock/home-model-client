@@ -40,7 +40,7 @@ class LoginForm extends Component {
                         <br/>
                         <input type="password"/><br/>
                         
-                    <button onClick={this.login}><Link to="/auth">login</Link></button>
+                    <button onClick={this.login}><Link to="/auth/home">login</Link></button>
                 </form>
             </div>
         </div>
