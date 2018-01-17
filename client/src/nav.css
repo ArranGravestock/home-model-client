@@ -84,10 +84,7 @@
 /*change em size for each screen*/
 @media (min-width: 1920px) {
     body {
-        font-size: 32px;
-    }
-    .nav-hidden-true {
-        max-width: none;
+        font-size: 16px;
     }
 }
 
