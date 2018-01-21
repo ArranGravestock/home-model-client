@@ -5,10 +5,9 @@
     overflow-x: hidden;
     position: fixed;
 
-    border-right: 1px solid #a2a2a2;
     letter-spacing: .25px;
     height: 100vh;
-    background-color: #ddd;
+    background-color: #364151;
     
     /*causes issues with min-max width in transitioning...
     transition: width .3s ease-in-out;
@@ -26,28 +25,30 @@
 
 .nav-sidebar-list > li {
     text-align: left;
-    border-bottom: 1px solid #a2a2a2;
+    //border-bottom: 1px solid #a2a2a2;
 }
 
 .nav-sidebar-list > li > a {
     display: block;
-    color: #333;
+    color: 		#EDF2F6;
     text-decoration: none;
     padding: 1em;
     text-transform: capitalize;
     user-select: none;
 }
 
+/*redundancy/*
+/*
 .nav-sidebar-list > li > a:hover {
-    color: rgb(34, 86, 197);
+    font-weight: 700;
 }
-
+*/
 .nav-sidebar-list > li > a > span {
     padding-right: .5em;
 }
 
 .nav-sidebar-list > li:hover {
-    background-color: #bbb;
+    background-color: #697484;
 }
 
 .nav-sidebar_title {
@@ -55,7 +56,7 @@
     padding: .5em;
 
     border-bottom: none !important;
-    background-color: #333 !important;
+    background-color: #303B4D !important;
     color: #f2f2f2;
     font-weight: bold;
     font-size: 2em;
@@ -65,20 +66,34 @@
 
 /*states for hiding and displaying elements*/
 .nav-hidden-true {
-    width: 30%;
-    min-width: 14em;
-    max-width: 20em;
+    width: 14em;
 }
 
 .nav-hidden-false {
-    min-width: 0;
-    max-width: 0;
     width: 0px;
 }
 
 /*desktop nav pushes instead of overlay*/
 @media (min-width: 768px) {
+    .nav-hidden-true {
+        margin-left: 0;
+    }
 
+    .nav-hidden-true {
+        width: 20em;
+    }
+
+    .wrapper-push-true {
+        margin-left: 20em;
+    }
+
+    .wrapper-push-false {
+        margin-left: 0;
+    }
+
+    .wrapper {
+        transition: all 0.3s ease-in-out;
+    }
 }
 
 /*change em size for each screen*/

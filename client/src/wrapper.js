@@ -7,8 +7,8 @@ import Doors from './doors';
 import Water from './water';
 import Gas from './gas';
 
-const Wrapper = () => (
-  <div className="wrapper">
+const Wrapper = ({className}) => (
+  <div className={className}>
     <Route path="/auth/home" component={Home}/>
     <Route path="/auth/lights" component={Lights}/>
     <Route path="/auth/doors" component={Doors}/>

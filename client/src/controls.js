@@ -48,7 +48,7 @@ class Controls extends Component {
                 <Nav className={`nav-hidden-${this.state.toggled}`} onClick={this.handleClick}/>
                 
             </div>
-            <Wrapper/>
+            <Wrapper className={`wrapper wrapper-push-${this.state.toggled}`}/>
         </div>
         )
     }

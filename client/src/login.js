@@ -29,7 +29,10 @@ class LoginForm extends Component {
         return(
         <div className="login-flex">
             <div className="card login">
-                <h1>login</h1>
+                <div className="card-header">
+                    <h1>login</h1>
+                </div>
+                <div className="card-content">
                     <form className="login-controls">
                         <label>email</label>
                         <br/>
@@ -40,8 +43,9 @@ class LoginForm extends Component {
                         <br/>
                         <input type="password"/><br/>
                         
-                    <button onClick={this.login}><Link to="/auth/home">login</Link></button>
-                </form>
+                        <button onClick={this.login}><Link to="/auth/home">login</Link></button>
+                    </form>
+                </div>
             </div>
         </div>
         )

@@ -1,17 +1,18 @@
 .controls {
     display: flex;
-    background-color: #fff;
+    background-color: #505B6B;
     justify-content: flex-end;
 }
 
 .controls > li {
     padding: 1.5em;
     text-transform: uppercase;
+    color: #f2f2f2;
 }
 
 .controls > li > a {
     text-decoration: none;
-    color: #333;
+    color: #f2f2f2;
     cursor: pointer;
     user-select: none;
 }

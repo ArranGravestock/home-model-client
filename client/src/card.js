@@ -3,35 +3,51 @@ import './card.css';
 const React = require('react')
 const FontAwesome = require('react-fontawesome')
 
-const ChartCard = ({chart, title}) => (
+const ChartCard = ({chart, title, style}) => (
     <div className="card card-chart">
-        <h1>{title}</h1>
-        {chart}
+        <div className="card-header">
+            <h1>{title}</h1>
+        </div>
+        <div className="card-content" style={style}>
+            {chart}
+        </div>
     </div>
 )
 
-const TextCard = ({title, desc, state}) => (
+const TextCard = ({title, desc, state, style}) => (
     <div className="card card-text">
-        <h1>{title}</h1>
-        <p className={(state==="locked") ? "state-locked" : "state-unlocked"}>{desc}</p>
+        <div className="card-header">
+            <h1>{title}</h1>
+        </div>
+        <div className="card-content" style={style}>
+            <p className={(state==="locked") ? "state-locked" : "state-unlocked"}>{desc}</p>
+        </div>
     </div>
 )
 
-const MiscCard = ({obj, title, desc}) => (
+const MiscCard = ({obj, title, desc, style}) => (
     <div className="card card-misc">
-        <h1>{title}</h1>
-        {obj}
-        <p>{desc}</p>
+        <div className="card-header">
+            <h1>{title}</h1>
+        </div>
+        <div className="card-content" style={style}>
+            {obj}
+            <p>{desc}</p>
+        </div>
     </div>
 )
 
-const StatsCard = ({title, stats, type}) => (
+const StatsCard = ({title, stats, type, style}) => (
     <div className="card card-stats">
-        <h2>{title}</h2>
-        <h1>{stats}</h1>
-        <FontAwesome className={type} name={(type==="stats-up") ? "long-arrow-up" : "long-arrow-down"}/>
-        <span className={type}>12.3%</span>
-        <span>this month</span>
+        <div className="card-header">
+            <h1>{title}</h1>
+        </div>
+        <div className="card-content" style={style}>
+            <h2>{stats}</h2>
+            <FontAwesome className={type} name={(type==="stats-up") ? "long-arrow-up" : "long-arrow-down"}/>
+            <span className={type}>12.3%</span>
+            <span>this month</span>
+        </div>
     </div>
 )
 
