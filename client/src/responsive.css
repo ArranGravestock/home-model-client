@@ -1,0 +1,64 @@
+/*desktop nav pushes instead of overlay*/
+@media (min-width: 768px) {
+
+    .controls {
+        justify-content: flex-end;
+    }
+
+    .nav-sidebar {
+        top: 0;
+    }
+    .nav-hidden-true {
+        margin-left: 0;
+    }
+
+    .nav-hidden-true {
+        width: 20em;
+    }
+
+    .wrapper-push-true {
+        margin-left: 20em;
+    }
+
+    .wrapper-push-false {
+        margin-left: 0;
+    }
+
+    .wrapper {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .content {
+        display: flex;
+        text-align: left;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    /*causes weird stretching*/
+    .card > .card-content > canvas {
+        min-width: 100%;
+        max-width: 100%;
+        height: 30vh;
+    }
+}
+
+/*change em size for each screen*/
+@media (min-width: 1920px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 3840px) {
+    body {
+        font-size: 64px;
+    }
+}
+
+@media (min-width: 7680px) {
+    body {
+        font-size: 128px;
+    }
+}

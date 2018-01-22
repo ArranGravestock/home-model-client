@@ -112,10 +112,10 @@ const ChartOptions = {
 
 const Water = () => (
   <div className="content">
-    <ChartCard title="Line" style={{width: '30vw'}} chart={<LineChart data={LineChartData} options={ChartOptions}/>}/>
-    <ChartCard title="Pie" style={{width: '20vw'}} chart={<PieChart data={PieChartData} options={ChartOptions}/>}/>
-    <ChartCard title="Bar" style={{width: '30vw'}} chart={<BarChart data={BarChartData} options={ChartOptions}/>}/>
-    <ChartCard title="Radar" style={{width: '25vw'}} chart={<RadarChart data={RadarChartData} options={ChartOptions}/>}/>
+    <ChartCard title="Line" chart={<LineChart data={LineChartData} options={ChartOptions}/>}/>
+    <ChartCard title="Pie" chart={<PieChart data={PieChartData} options={ChartOptions}/>}/>
+    <ChartCard title="Bar" chart={<BarChart data={BarChartData} options={ChartOptions}/>}/>
+    <ChartCard title="Radar" chart={<RadarChart data={RadarChartData} options={ChartOptions}/>}/>
   </div>
 )
 

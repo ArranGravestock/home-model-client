@@ -1,7 +1,7 @@
 .controls {
     display: flex;
     background-color: #505B6B;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .controls > li {

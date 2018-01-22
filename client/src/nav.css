@@ -1,6 +1,6 @@
 .nav-sidebar {
     z-index: 1;
-    top: 0;
+  
     left: -1px; /*0px border means you can change nav without opening*/
     overflow-x: hidden;
     position: fixed;
@@ -71,46 +71,4 @@
 
 .nav-hidden-false {
     width: 0px;
-}
-
-/*desktop nav pushes instead of overlay*/
-@media (min-width: 768px) {
-    .nav-hidden-true {
-        margin-left: 0;
-    }
-
-    .nav-hidden-true {
-        width: 20em;
-    }
-
-    .wrapper-push-true {
-        margin-left: 20em;
-    }
-
-    .wrapper-push-false {
-        margin-left: 0;
-    }
-
-    .wrapper {
-        transition: all 0.3s ease-in-out;
-    }
-}
-
-/*change em size for each screen*/
-@media (min-width: 1920px) {
-    body {
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 3840px) {
-    body {
-        font-size: 64px;
-    }
-}
-
-@media (min-width: 7680px) {
-    body {
-        font-size: 128px;
-    }
 }

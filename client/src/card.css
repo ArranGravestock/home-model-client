@@ -1,10 +1,10 @@
 .card {
     margin: 1em;
     background-color: #ffffff;
-    //border-radius: 3px;
     color: #56565E;
     overflow: hidden;
-    //border: 1px solid #D6D6DE;
+    width: calc(100% - 2em);
+    position: relative;
 }
 
 .card > .card-header {
@@ -23,8 +23,12 @@
 }
 
 .card > .card-content {
-    margin: 0.5em;
+    padding: 0.5em;
     position: relative;
+}
+
+.card > .card-content > canvas {
+    width: calc(100% - 2em);
 }
 
 
