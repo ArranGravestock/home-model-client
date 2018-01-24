@@ -23,25 +23,21 @@ class LoginForm extends Component {
         if (redirectToReferrer) {
         return (
             <Redirect to={from}/>
-        )
+            )
         }
 
         return(
-        <div className="login-flex">
-            <div className="card login">
+        <div className="wrapper-login">
+            <div className="card card-login">
                 <div className="card-header">
                     <h1>login</h1>
                 </div>
                 <div className="card-content">
                     <form className="login-controls">
-                        <label>email</label>
-                        <br/>
-                        <input type="text" placeholder="john@doe.com"/><br/>
-                        
-                        
-                        <label>password</label>
-                        <br/>
-                        <input type="password"/><br/>
+                        <label htmlFor="username">email</label><br/>
+                        <input id="username" type="text" placeholder="john@doe.com"/><br/>
+                        <label htmlFor="password">password<br/></label>
+                        <input id="password" type="password"/><br/>
                         
                         <button onClick={this.login}><Link to="/auth/home">login</Link></button>
                     </form>

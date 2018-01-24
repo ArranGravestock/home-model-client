@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#536878">
+    <meta name="description" content="IoT Dashboard">
+    <meta name="keywords" content="Internet of Things,IoT,Dashboard">
+    <meta name="author" content="Arran Gravestock">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!--
@@ -38,5 +41,23 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!--
+      Service worker which is registered only for HTTPS access others huge
+      security issues are caused over HTTP due to the nature of service
+      workers
+    -->
+    <script>
+      if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('%PUBLIC_URL%/sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+    </script>
   </body>
 </html>
