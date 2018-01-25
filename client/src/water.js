@@ -1,5 +1,5 @@
 import React from 'react';
-import {ChartCard, TextCard} from './card';
+import {ChartCard} from './card';
 
 //Chart.defaults.global.responsive = true;
 

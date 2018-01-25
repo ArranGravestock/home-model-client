@@ -1,4 +1,6 @@
 import './card.css';
+import {Component} from 'react';
+import {HuePicker, AlphaPicker} from 'react-color';
 
 const React = require('react')
 const FontAwesome = require('react-fontawesome')
@@ -51,4 +53,70 @@ const StatsCard = ({title, stats, type, style}) => (
     </div>
 )
 
-export {ChartCard, TextCard, MiscCard, StatsCard};
+
+class LightCard extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            brightness: 20,
+        }
+    }
+
+    handleOnChange = (value) => {
+        this.setState({
+            brightness: value
+        })
+    }
+
+    render() {
+        const {brightness} = this.state;
+        return (
+        <div className="card card-light">
+            <div className="card-header">
+                <h1>{this.props.title}</h1>
+
+                <label className="switch">
+                    <input type="checkbox"/>
+                    <span className="slider round"></span>
+                </label>
+            </div>
+            <div className="card-content">
+                <div className="slider">
+                    <HuePicker width="100%"/>
+                    <AlphaPicker width="100%"/>
+                    <div className="brightness-container">
+                        <input type="range" step="1" min="1" max="100" value={brightness} className="bightness-slider" onChange={this.handleOnChange}/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        )
+    }
+
+}
+/*
+
+const LightCard = ({title}) => (
+    <div className="card card-light">
+        <div className="card-header">
+            <h1>{title}</h1>
+
+            <label className="switch">
+                <input type="checkbox"/>
+                <span className="slider round"></span>
+            </label>
+        </div>
+        <div className="card-content">
+            <div className="slider">
+                <HuePicker width="100%"/>
+                <AlphaPicker width="100%"/>
+                <div className="brightness-container">
+                    <input type="range" min="1" max="100" value="50" className="bightness-slider" id="range" onChange={sliderInput}/>
+                </div>
+            </div>
+        </div>
+    </div>
+)
+*/
+
+export {ChartCard, TextCard, MiscCard, StatsCard, LightCard};

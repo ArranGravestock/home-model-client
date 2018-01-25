@@ -1,8 +1,12 @@
 import React from 'react';
+import {LightCard} from './card';
 
 const Lights = () => (
-  <div>
-    <h1>lights</h1>
+  <div className="content">
+    <LightCard title="Living Room"/>
+    <LightCard title="Bedroom"/>
+    <LightCard title="Bathroom"/>
+    <LightCard title="Hallway"/>
   </div>
 )
 
