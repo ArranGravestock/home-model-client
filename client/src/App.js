@@ -3,8 +3,13 @@ import './App.css';
 import Controls from './controls';
 import LoginForm from './login';
 import {TextCard} from './card';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {PrivateRoute} from './privateroute';
+
+//import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+const BrowserRouter = require('react-router-dom/Router');
+const Route = require('react-router-dom/Route');
+const Switch = require('react-router-dom/Switch');
+
 import './responsive.css';
 
 const NoMatch = ({location}) => (
