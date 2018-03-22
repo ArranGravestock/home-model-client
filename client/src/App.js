@@ -26,11 +26,11 @@ const App = () => (
     <div className="App">
       <Switch>
         <Route path="/login" component={LoginForm}/>
-        <PrivateRoute path="/auth" component={Controls}/>
+        
         <Route component={NoMatch}/>
       </Switch>
     </div>
   </Router>
 )
-
+//<PrivateRoute path="/auth" component={Controls}/>
 export default App;
