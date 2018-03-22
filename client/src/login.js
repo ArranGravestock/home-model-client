@@ -13,7 +13,6 @@ class LoginForm extends Component {
           this.setState({ redirectToReferrer: true })
         })
     }
-
     
     render() {
 

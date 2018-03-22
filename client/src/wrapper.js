@@ -6,6 +6,7 @@ import Lights from './lights';
 import Doors from './doors';
 import Water from './water';
 import Gas from './gas';
+import Device from './device';
 
 const Wrapper = ({className}) => (
   <div className={className}>
@@ -14,6 +15,7 @@ const Wrapper = ({className}) => (
     <Route path="/auth/doors" component={Doors}/>
     <Route path="/auth/water" component={Water}/>
     <Route path="/auth/gas" component={Gas}/>
+    <Route path="/auth/device" component={Device}/>
   </div>
 )
 

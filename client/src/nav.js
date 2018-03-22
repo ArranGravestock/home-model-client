@@ -21,7 +21,7 @@ const listItems = [
 const Nav = ({className}) => (
   <div className={`nav-sidebar ${className}`}>
     <ul className="nav-sidebar-list">
-        <li className="nav-sidebar_title">Dashboard</li>
+        <li className="nav-sidebar_title">DEVICE-NAME</li>
         {listItems}
     </ul>
   </div>

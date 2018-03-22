@@ -43,6 +43,7 @@ class Controls extends Component {
                         {this.state.toggled ? 'close' : 'menu'}
                     </li>
                     <li><Link to="/auth/settings">settings</Link></li>
+                    <li><Link to="/auth/device">devices</Link></li>
                     <AuthButton/>
                 </ul>
                 <Nav className={`nav-hidden-${this.state.toggled}`} onClick={this.handleClick}/>
