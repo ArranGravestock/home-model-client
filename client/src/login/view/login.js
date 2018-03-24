@@ -13,7 +13,6 @@ import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import IconButton from 'material-ui/IconButton';
 import {FormControl, FormHelperText} from 'material-ui/Form'
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import TextField from 'material-ui/TextField';
 
 
 const auth = {
@@ -123,7 +122,7 @@ class LoginForm extends Component {
                                 </InputAdornment>
                                 }
                             />
-                            <FormHelperText id="password-reset">Forgot your password? <a href="#">Click here</a></FormHelperText>
+                            <FormHelperText id="password-reset">Forgot your password? <Link to="/forgot-details">Click here</Link></FormHelperText>
                             </FormControl>
                         </form>
                     </div>

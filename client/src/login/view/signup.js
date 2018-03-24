@@ -13,7 +13,6 @@ import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import IconButton from 'material-ui/IconButton';
 import {FormControl} from 'material-ui/Form'
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import TextField from 'material-ui/TextField';
 
 const validateForm = (user, pass, email) => {
     //regex testing
