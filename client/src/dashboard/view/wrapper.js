@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import './wrapper.css';
+import '../css/wrapper.css';
 import Home from './home';
 import Lights from './lights';
 import Doors from './doors';

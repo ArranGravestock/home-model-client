@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './nav.css';
+import '../css/nav.css';
 
 const React = require('react')
 const FontAwesome = require('react-fontawesome')

@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import Controls from './controls';
-import LoginForm from './login';
-import {TextCard} from './card';
-import {PrivateRoute} from './privateroute';
+import Controls from './dashboard/view/controls';
+import {LoginForm} from './login/view/login';
+import {TextCard} from './dashboard/view/card';
+import Signup from './login/view/signup';
+import {PrivateRoute} from './login/view/privateroute';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import './responsive.css';
+import './dashboard/css/responsive.css';
 
 //import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 /*
@@ -26,11 +27,12 @@ const App = () => (
     <div className="App">
       <Switch>
         <Route path="/login" component={LoginForm}/>
-        
+        <Route path="/signup" component={Signup}/>
+        <PrivateRoute path="/auth" component={Controls}/>
         <Route component={NoMatch}/>
       </Switch>
     </div>
   </Router>
 )
-//<PrivateRoute path="/auth" component={Controls}/>
+//
 export default App;

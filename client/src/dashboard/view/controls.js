@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './controls.css';
+import '../css/controls.css';
 import Nav from './nav';
 import {Link, withRouter} from 'react-router-dom';
 import Wrapper from './wrapper';
-import {fakeAuth} from './privateroute';
+import {auth} from '../../login/view/login';
 
 const AuthButton = withRouter(({ history }) => (
 
-    fakeAuth.isAuthenticated ? (
+    auth.isAuthenticated ? (
         <li onClick={() => {
-          fakeAuth.signout(() => history.push('/login'))
+          auth.signout(() => history.push('/login'))
         }}>logout</li>
     ) : (
       <p>UNAUTHED!!</p>

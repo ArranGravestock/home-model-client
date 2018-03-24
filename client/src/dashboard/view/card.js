@@ -1,4 +1,4 @@
-import './card.css';
+import '../css/card.css';
 import {Component} from 'react';
 import {HuePicker, AlphaPicker} from 'react-color';
 
