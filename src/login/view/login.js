@@ -31,13 +31,20 @@ class LoginForm extends Component {
         error: '',
         showPassword: false,
         redirectToReferrer: false,
-        username: '',
-        password: ''
-    }
+		user: {
+		}
+	}
 
     login = (e) => {
         //e.preventDefault();
-        fetch(`http://localhost:3000/login?username=${this.state.username}&password=${this.state.password}`, {method: 'POST'}).then((res) => {
+        console.log(JSON.stringify(this.state.user));
+        fetch(`http://localhost:3000/login`, 
+        {
+            method: 'POST', 
+            headers: {'content-type':'application/json'}, 
+            body: JSON.stringify(this.state.user)
+        }
+        ).then((res) => {
             if (res.status >= 200 && res.status < 300) {
                 console.log(res);
                 auth.authenticate(() => {
@@ -48,6 +55,7 @@ class LoginForm extends Component {
                 alert("Password or username is incorrect!");
             }
         })
+		
     }
 
     updatePass = (e) => {
@@ -63,7 +71,12 @@ class LoginForm extends Component {
     }
 
     handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
+        this.setState(({ 
+            user: {
+                ...this.state.user,
+                [prop]: event.target.value
+            }
+        }));
     };
 
     handleClickShowPasssword = () => {
