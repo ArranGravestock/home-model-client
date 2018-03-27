@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom';
 import '../css/login.css'
 import 'whatwg-fetch';
 
-
 import Visibility from 'material-ui-icons/Visibility'
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 
@@ -41,16 +40,25 @@ class LoginForm extends Component {
         fetch(`http://localhost:3000/login`, 
         {
             method: 'POST', 
-            headers: {'content-type':'application/json'}, 
+            credentials: 'include',
+            headers: {
+                'content-type':'application/json',
+                'access-control-allow-origin':'*'
+            }, 
             body: JSON.stringify(this.state.user)
         }
         ).then((res) => {
             if (res.status >= 200 && res.status < 300) {
-                console.log(res);
+                //return (<Link to="auth/dashboard"/>)
                 auth.authenticate(() => {
                     console.log("redirect true");
                     this.setState({ redirectToReferrer: true })
                 });
+                // fetch(`http://localhost:3000/devices`, {credentials: 'include'}).then((res)=> {
+                //     if (res.status >= 200 && res.status < 300) {
+                //         console.log(res);
+                //     }
+                // })
             } else {
                 alert("Password or username is incorrect!");
             }
@@ -86,7 +94,7 @@ class LoginForm extends Component {
     handleMouseDownPassword = event => {
         event.preventDefault();
     };
-    
+
     render() {
 
         const { from } = this.props.location.state || { from: { pathname: '/' } }

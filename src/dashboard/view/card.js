@@ -1,6 +1,7 @@
 import '../css/card.css';
 import {Component} from 'react';
 import {HuePicker, AlphaPicker} from 'react-color';
+import {deviceSelected} from './device';
 
 const React = require('react')
 const FontAwesome = require('react-fontawesome')
@@ -53,13 +54,68 @@ const StatsCard = ({title, stats, type, style}) => (
     </div>
 )
 
+class RegisterDeviceCard extends Component {
+
+    state = {
+        deviceid: ''
+    }
+    registerDevice = () => {
+        console.log(this.state.deviceid);
+    }
+
+    handleChange = prop => (event) => {
+        this.setState({[prop]: event.target.value})
+        console.log(this.state.deviceid);
+    }
+
+    render() {
+        return (
+            <div className="card card-text">
+                <div className="card-header">
+                    <h1>Register a new device</h1>
+                </div>
+                <div className="card-content">
+                    <form>
+                        <input type="text" name="deviceid" onChange={this.handleChange("deviceid")}/>
+                        <button onClick={this.registerDevice}>Add</button>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+}
+
+class DeviceCard extends Component {
+    updateDevice = (name, id) => {
+        localStorage.deviceid = id;
+        localStorage.device = name;
+    }
+    render() {
+        return (
+            <div className="card card-device">
+            <div className="card-header">
+                <h1>{this.props.title}</h1>
+            </div>
+            <div className="card-content">
+                <button onClick={() => this.updateDevice(this.props.title, this.props.id)}>Select</button>
+            </div>
+        </div>
+        )
+    }
+}
 
 class LightCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            currentState: 0,
             brightness: 20,
         }
+    }
+
+    updateDevice = (name, id, state) => {
+        localStorage.lightid = id;
+        localStorage.lightname = name;
     }
 
     handleOnChange = (value) => {
@@ -68,15 +124,19 @@ class LightCard extends Component {
         })
     }
 
+    toggleLight = () => {
+        //update light
+    }
+
     render() {
         const {brightness} = this.state;
         return (
         <div className="card card-light">
             <div className="card-header">
-                <h1>{this.props.title}</h1>
+                <h1>{this.props.id}:{this.props.title}</h1>
 
                 <label className="switch">
-                    <input type="checkbox"/>
+                    <input type="checkbox" className={this.props.title} checked={this.props.state ? true : false} onClick={this.toggleLight} onChange={()=> {!this.props.state}}/>
                     <span className="slider round"></span>
                 </label>
             </div>
@@ -119,4 +179,4 @@ const LightCard = ({title}) => (
 )
 */
 
-export {ChartCard, TextCard, MiscCard, StatsCard, LightCard};
+export {ChartCard, TextCard, MiscCard, StatsCard, LightCard, DeviceCard, RegisterDeviceCard};

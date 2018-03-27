@@ -6,7 +6,7 @@ import Lights from './lights';
 import Doors from './doors';
 import Water from './water';
 import Gas from './gas';
-import Device from './device';
+import {Device} from './device';
 
 const Wrapper = ({className}) => (
   <div className={className}>

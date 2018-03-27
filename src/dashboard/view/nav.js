@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
 import '../css/nav.css';
-
-const React = require('react')
 const FontAwesome = require('react-fontawesome')
 
 const listItems = [
@@ -18,13 +17,18 @@ const listItems = [
   <li key={i} onClick={item.onClick}><Link to={`/auth${item.link}`}><FontAwesome name={item.icon}/>{item.name}</Link></li>
 )
 
-const Nav = ({className}) => (
-  <div className={`nav-sidebar ${className}`}>
-    <ul className="nav-sidebar-list">
-        <li className="nav-sidebar_title">DEVICE-NAME</li>
-        {listItems}
-    </ul>
-  </div>
-)
+class Nav extends Component {
+  render() {
+    return(
+      <div className={`nav-sidebar ${this.props.className}`}>
+        <ul className="nav-sidebar-list">
+            <li className="nav-sidebar_title">{localStorage.device}</li>
+            {listItems}
+        </ul>
+      </div>
+    )
+  }  
+}
+
 
 export default Nav;
