@@ -63,7 +63,6 @@ class LoginForm extends Component {
                 alert("Password or username is incorrect!");
             }
         })
-		
     }
 
     updatePass = (e) => {

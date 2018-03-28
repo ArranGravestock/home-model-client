@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {LightCard} from './card';
+import {LightCard} from '../card';
 import 'whatwg-fetch';
 
-class Lights extends Component {
+class Sensors extends Component {
 
   state = {
 

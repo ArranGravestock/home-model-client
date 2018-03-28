@@ -1,11 +1,8 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import '../css/wrapper.css';
-import Home from './home';
-import Lights from './lights';
-import Doors from './doors';
-import Water from './water';
-import Gas from './gas';
+import Home from './menu/home';
+import Lights from './menu/lights';
 import {Device} from './device';
 
 const Wrapper = ({className}) => (

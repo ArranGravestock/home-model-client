@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatsCard, TextCard} from './card';
+import {StatsCard, TextCard} from '../card';
 
 const Home = () => (
   <div className="content">
