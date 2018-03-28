@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-// import {Link, Redirect} from 'react-router-dom';
 import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-// import {fakeAuth} from './privateroute';
-import '../css/login.css'
 import 'whatwg-fetch';
+
+import '../css/login.css'
+
+
 
 import Visibility from 'material-ui-icons/Visibility'
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
-
 import IconButton from 'material-ui/IconButton';
 import {FormControl, FormHelperText} from 'material-ui/Form'
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
@@ -35,7 +35,7 @@ class LoginForm extends Component {
 	}
 
     login = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
         console.log(JSON.stringify(this.state.user));
         fetch(`http://localhost:3000/login`, 
         {

@@ -15,6 +15,9 @@
     .nav-hidden-true {
         width: 20em;
     }
+    .nav-sidebar_title {
+        text-align: center;
+    }
 
     .wrapper-push-true {
         margin-left: 20em;

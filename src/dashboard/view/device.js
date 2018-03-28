@@ -40,8 +40,8 @@ class Device extends Component {
     render() {
       return (
         <div>
-            {this.state.devices}
             <RegisterDeviceCard/>
+            {this.state.devices}
         </div>
       )
     }

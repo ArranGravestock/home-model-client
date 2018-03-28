@@ -57,15 +57,24 @@ const StatsCard = ({title, stats, type, style}) => (
 class RegisterDeviceCard extends Component {
 
     state = {
-        deviceid: ''
+        devicetoken: '',
     }
-    registerDevice = () => {
-        console.log(this.state.deviceid);
+
+    registerDevice = (e) => {
+        e.preventDefault();
+        fetch(`http://localhost:3000/registerdevice/${this.state.devicetoken}`, {method: 'POST', credentials: 'include'}).then(
+            () => {
+                alert("new device registered");
+            }
+        ).catch(
+            () => {
+                alert("device token incorrect!");
+            }
+        )
     }
 
     handleChange = prop => (event) => {
         this.setState({[prop]: event.target.value})
-        console.log(this.state.deviceid);
     }
 
     render() {
@@ -76,7 +85,7 @@ class RegisterDeviceCard extends Component {
                 </div>
                 <div className="card-content">
                     <form>
-                        <input type="text" name="deviceid" onChange={this.handleChange("deviceid")}/>
+                        <input type="text" name="deviceid" onChange={this.handleChange("devicetoken")}/>
                         <button onClick={this.registerDevice}>Add</button>
                     </form>
                 </div>
@@ -111,11 +120,6 @@ class LightCard extends Component {
             currentState: 0,
             brightness: 20,
         }
-    }
-
-    updateDevice = (name, id, state) => {
-        localStorage.lightid = id;
-        localStorage.lightname = name;
     }
 
     handleOnChange = (value) => {

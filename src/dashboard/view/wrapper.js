@@ -11,10 +11,12 @@ import {Device} from './device';
 const Wrapper = ({className}) => (
   <div className={className}>
     <Route path="/auth/home" component={Home}/>
+    <Route path="/auth/logs" component={Lights}/>
     <Route path="/auth/lights" component={Lights}/>
-    <Route path="/auth/doors" component={Doors}/>
-    <Route path="/auth/water" component={Water}/>
-    <Route path="/auth/gas" component={Gas}/>
+    <Route path="/auth/sensors" component={Lights}/>
+    <Route path="/auth/controls" component={Lights}/>
+
+    <Route path="/auth/settings" component={Lights}/>
     <Route path="/auth/device" component={Device}/>
   </div>
 )

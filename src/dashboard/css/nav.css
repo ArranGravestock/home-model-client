@@ -25,7 +25,7 @@
 
 .nav-sidebar-list > li {
     text-align: left;
-    //border-bottom: 1px solid #a2a2a2;
+    /*border-bottom: 1px solid #a2a2a2;*/
 }
 
 .nav-sidebar-list > li > a {
@@ -52,9 +52,8 @@
 }
 
 .nav-sidebar_title {
-    text-align: center !important;
+    text-align: left;
     padding: .5em;
-
     border-bottom: none !important;
     background-color: #303B4D !important;
     color: #f2f2f2;
@@ -66,7 +65,7 @@
 
 /*states for hiding and displaying elements*/
 .nav-hidden-true {
-    width: 14em;
+    width: 60vw;
 }
 
 .nav-hidden-false {
