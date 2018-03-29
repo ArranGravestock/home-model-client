@@ -21,6 +21,8 @@ class Lights extends Component {
       })
     )
   }
+
+
   render() {
     return(
       <div className="content">

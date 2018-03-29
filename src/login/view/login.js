@@ -65,6 +65,11 @@ class LoginForm extends Component {
         })
     }
 
+    componentWillMount = () => {
+       // let ws = new WebSocket(`ws://localhost:3000`);
+        //ws.send("here's some text");
+    }
+
     updatePass = (e) => {
         this.setState({
             password: e.target.value

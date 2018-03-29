@@ -1,21 +1,96 @@
 import '../css/card.css';
-import {Component} from 'react';
+import  React, {Component} from 'react';
 import {HuePicker, AlphaPicker} from 'react-color';
 import {deviceSelected} from './device';
+import {Line} from 'react-chartjs';
+import FontAwesome from 'react-fontawesome';
 
-const React = require('react')
-const FontAwesome = require('react-fontawesome')
+class ChartCard extends Component {
 
-const ChartCard = ({chart, title, style}) => (
-    <div className="card card-chart">
-        <div className="card-header">
-            <h1>{title}</h1>
-        </div>
-        <div className="card-content" style={style}>
-            {chart}
-        </div>
-    </div>
-)
+    state = {
+        title: 'test',
+        data: [],
+        labels: []
+      }     
+
+      ChartOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+      }
+
+    componentWillMount() {
+        var interval = setInterval( () => {
+            fetch(`http://localhost:3000/device/${this.props.deviceid}/room/1/sensor/${this.props.sensorid}`, 
+            {
+                method: 'GET', 
+                credentials: 'include',
+                headers: {
+                    'content-type':'application/json',
+                    'access-control-allow-origin':'*'
+                }
+            }).then((res) => res.json()).then(json => {
+                var d = new Date();
+                var dateString = `${d.toLocaleTimeString()}`
+                this.setState({title: json[0].SensorName})
+                if(this.state.data.length > 10) {
+                    
+                    this.setState(prevState => ({
+                        title: json[0].SensorName,
+                        labels: [...prevState.labels.splice(1,10), dateString],
+                        data: [...prevState.data.splice(1, 10), json[0].SensorState]
+                    }))
+                } else {
+                    var d = new Date();
+                    this.setState(prevState => ({
+                        title: json[0].SensorName,
+                        labels: [...prevState.labels, dateString],
+                        data: [...prevState.data, json[0].SensorState]
+                    }))
+                }
+                
+                // this.setState(prevState => ({
+                //     title: json[0].SensorName,
+                //     labels: [...prevState.labels, d.getMinutes()],
+                //     data: [...prevState.data, json[0].SensorState]
+                // }))
+            })
+        }, 2000)
+        this.setState({ fetch: interval })
+        console.log(this.state.data);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.fetch);
+    }
+    
+    render() {
+        var LineChartData = {
+            labels: this.state.labels,
+            datasets: [
+              {
+                label: "Motion",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: this.state.data,
+              }
+            ]
+          }
+        return(
+            <div className="card card-chart">
+                <div className="card-header">
+                    <h1>{this.state.title}</h1>
+                </div>
+                <div className="card-content">
+                    <Line id={`line-chart${this.props.deviceid}`} data={LineChartData} options={this.ChartOptions}/>
+                </div>
+            </div>
+        )
+    }
+}
 
 const TextCard = ({title, desc, state, style}) => (
     <div className="card card-text">
