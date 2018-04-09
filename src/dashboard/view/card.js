@@ -223,7 +223,6 @@ class LightCard extends Component {
             <div className="card-content">
                 <div className="slider">
                     <HuePicker width="100%"/>
-                    <AlphaPicker width="100%"/>
                     <div className="brightness-container">
                         <input type="range" step="1" min="1" max="100" value={brightness} className="bightness-slider" onChange={this.handleOnChange}/>
                     </div>
@@ -234,29 +233,33 @@ class LightCard extends Component {
     }
 
 }
-/*
 
-const LightCard = ({title}) => (
-    <div className="card card-light">
-        <div className="card-header">
-            <h1>{title}</h1>
+class RemoteCard extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            currentState: 0
+        }
+    }
 
-            <label className="switch">
-                <input type="checkbox"/>
-                <span className="slider round"></span>
-            </label>
-        </div>
-        <div className="card-content">
-            <div className="slider">
-                <HuePicker width="100%"/>
-                <AlphaPicker width="100%"/>
-                <div className="brightness-container">
-                    <input type="range" min="1" max="100" value="50" className="bightness-slider" id="range" onChange={sliderInput}/>
-                </div>
+    render() {
+        const {brightness} = this.state;
+        return (
+        <div className="card card-light">
+            <div className="card-header">
+                <h1>{this.props.id}:{this.props.title}</h1>
+
+                <label className="switch">
+                    <input type="checkbox" className={this.props.title} checked={this.props.state ? true : false} onClick={this.toggleLight} onChange={()=> {!this.props.state}}/>
+                    <span className="slider round"></span>
+                </label>
+            </div>
+            <div className="card-content">
             </div>
         </div>
-    </div>
-)
-*/
+        )
+    }
 
-export {ChartCard, TextCard, MiscCard, StatsCard, LightCard, DeviceCard, RegisterDeviceCard};
+}
+
+export {ChartCard, TextCard, MiscCard, StatsCard, LightCard, DeviceCard, RegisterDeviceCard, RemoteCard};

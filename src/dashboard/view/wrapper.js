@@ -4,7 +4,7 @@ import '../css/wrapper.css';
 import Home from './menu/home';
 import Lights from './menu/lights';
 import Sensors from './menu/sensors';
-import Controls from './menu/controls';
+import Remotes from './menu/remotes';
 import Settings from './settings';
 import {Device} from './device';
 import Logging from './menu/logging';
@@ -15,7 +15,7 @@ const Wrapper = ({className}) => (
     <Route path="/auth/logs" component={Logging}/>
     <Route path="/auth/lights" component={Lights}/>
     <Route path="/auth/sensors" component={Sensors}/>
-    <Route path="/auth/controls" component={Controls}/>
+    <Route path="/auth/remotes" component={Remotes}/>
 
     <Route path="/auth/settings" component={Settings}/>
     <Route path="/auth/device" component={Device}/>

@@ -14,7 +14,7 @@ const listItems = [
   {link: "/logs", icon: "calendar", name: "data logging"},
   {link: "/sensors", icon: "user", name: "sensors"},
   {link: "/lights", icon: "lightbulb-o", name: "lights"},
-  {link: "/controls", icon: "toggle-on", name: "controls"},
+  {link: "/remotes", icon: "toggle-on", name: "remotes"},
 
 ].map((item, i) => 
   <li key={i} onClick={item.onClick}><Link to={`/auth${item.link}`}><FontAwesome name={item.icon}/>{item.name}</Link></li>

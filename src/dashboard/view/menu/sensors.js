@@ -5,9 +5,24 @@ import {ChartCard} from '../card';
 
 class Sensors extends Component {
 
+  state = {}
 
-
-
+  componentWillMount() {
+    fetch(`http://localhost:3000/device/${localStorage.deviceid}/sensors`, {credentials: 'include'})
+    .then(res => res.json())
+    .then(json => {
+      console.log(json);
+      var sensors = json.map(sensor => {
+        return(
+          <ChartCard key={sensor.ThingID} deviceid={localStorage.deviceid} sensorid={sensor.ThingID}/>
+        )
+      })
+      this.setState({sensors: sensors})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
 
   
@@ -15,10 +30,7 @@ class Sensors extends Component {
   render() {
     return(
       <div className="content">
-        <ChartCard deviceid={1} sensorid={3}/>
-        <ChartCard deviceid={1} sensorid={4}/>
-        <ChartCard deviceid={1} sensorid={5}/>
-        <ChartCard deviceid={1} sensorid={6}/>
+        {this.state.sensors}
       </div>
     )
   }
