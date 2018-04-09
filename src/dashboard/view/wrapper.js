@@ -5,11 +5,12 @@ import Home from './menu/home';
 import Lights from './menu/lights';
 import Sensors from './menu/sensors';
 import {Device} from './device';
+import Logging from './menu/logging';
 
 const Wrapper = ({className}) => (
   <div className={className}>
     <Route path="/auth/home" component={Home}/>
-    <Route path="/auth/logs" component={Lights}/>
+    <Route path="/auth/logs" component={Logging}/>
     <Route path="/auth/lights" component={Lights}/>
     <Route path="/auth/sensors" component={Sensors}/>
     <Route path="/auth/controls" component={Lights}/>

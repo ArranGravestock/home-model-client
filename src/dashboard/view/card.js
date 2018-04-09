@@ -103,12 +103,12 @@ const TextCard = ({title, desc, state, style}) => (
     </div>
 )
 
-const MiscCard = ({obj, title, desc, style}) => (
+const MiscCard = ({obj, title, desc}) => (
     <div className="card card-misc">
         <div className="card-header">
             <h1>{title}</h1>
         </div>
-        <div className="card-content" style={style}>
+        <div className="card-content">
             {obj}
             <p>{desc}</p>
         </div>
