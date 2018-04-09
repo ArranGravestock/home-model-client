@@ -8,7 +8,7 @@ import FontAwesome from 'react-fontawesome';
 class ChartCard extends Component {
 
     state = {
-        title: 'test',
+        title: 'undefined',
         data: [],
         labels: []
       }     
@@ -18,45 +18,46 @@ class ChartCard extends Component {
         maintainAspectRatio: true,
       }
 
+      fetch = () => {  fetch(`http://localhost:3000/device/${this.props.deviceid}/sensor/${this.props.sensorid}`, 
+      {
+          method: 'GET', 
+          credentials: 'include',
+          headers: {
+              'content-type':'application/json',
+              'access-control-allow-origin':'*'
+          }
+      }).then((res) => res.json()).then(json => {
+          var d = new Date();
+          var dateString = `${d.toLocaleTimeString()}`
+          this.setState({title: json[0].ThingName})
+          if(this.state.data.length > 10) {
+              
+              this.setState(prevState => ({
+                  title: json[0].ThingName,
+                  labels: [...prevState.labels.splice(1,10), dateString],
+                  data: [...prevState.data.splice(1, 10), json[0].ThingState]
+              }))
+          } else {
+              var d = new Date();
+              this.setState(prevState => ({
+                  title: json[0].ThingName,
+                  labels: [...prevState.labels, dateString],
+                  data: [...prevState.data, json[0].ThingState]
+              }))
+          }
+      })
+    }
+
     componentWillMount() {
+        
+        //initial fetch
+        this.fetch()
+
+        //set fetch interval
         var interval = setInterval( () => {
-            fetch(`http://localhost:3000/device/${this.props.deviceid}/sensor/${this.props.sensorid}`, 
-            {
-                method: 'GET', 
-                credentials: 'include',
-                headers: {
-                    'content-type':'application/json',
-                    'access-control-allow-origin':'*'
-                }
-            }).then((res) => res.json()).then(json => {
-                var d = new Date();
-                var dateString = `${d.toLocaleTimeString()}`
-                this.setState({title: json[0].ThingName})
-                if(this.state.data.length > 10) {
-                    
-                    this.setState(prevState => ({
-                        title: json[0].ThingName,
-                        labels: [...prevState.labels.splice(1,10), dateString],
-                        data: [...prevState.data.splice(1, 10), json[0].ThingState]
-                    }))
-                } else {
-                    var d = new Date();
-                    this.setState(prevState => ({
-                        title: json[0].ThingName,
-                        labels: [...prevState.labels, dateString],
-                        data: [...prevState.data, json[0].ThingState]
-                    }))
-                }
-                
-                // this.setState(prevState => ({
-                //     title: json[0].SensorName,
-                //     labels: [...prevState.labels, d.getMinutes()],
-                //     data: [...prevState.data, json[0].SensorState]
-                // }))
-            })
+            this.fetch()
         }, 2000)
         this.setState({ fetch: interval })
-        console.log(this.state.data);
     }
 
     componentWillUnmount() {

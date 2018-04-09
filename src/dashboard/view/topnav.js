@@ -16,7 +16,7 @@ const AuthButton = withRouter(({ history }) => (
     )
 ))
 
-class Controls extends Component {
+class TopNav extends Component {
 
     constructor(props) {
         super(props);
@@ -55,4 +55,4 @@ class Controls extends Component {
     }
 }
 
-export default Controls;
+export default TopNav;

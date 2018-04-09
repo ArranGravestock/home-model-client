@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Controls from './dashboard/view/controls';
+import TopNav from './dashboard/view/topnav';
 import {LoginForm} from './login/view/login';
 import {TextCard} from './dashboard/view/card';
 import Signup from './login/view/signup';
@@ -28,7 +28,7 @@ const App = () => (
       <Switch>
         <Route path="/login" component={LoginForm}/>
         <Route path="/signup" component={Signup}/>
-        <PrivateRoute path="/auth" component={Controls}/>
+        <PrivateRoute path="/auth" component={TopNav}/>
         <Route component={NoMatch}/>
       </Switch>
     </div>
