@@ -20,7 +20,7 @@ class ChartCard extends Component {
 
     componentWillMount() {
         var interval = setInterval( () => {
-            fetch(`http://localhost:3000/device/${this.props.deviceid}/room/1/sensor/${this.props.sensorid}`, 
+            fetch(`http://localhost:3000/device/${this.props.deviceid}/sensor/${this.props.sensorid}`, 
             {
                 method: 'GET', 
                 credentials: 'include',
@@ -31,20 +31,20 @@ class ChartCard extends Component {
             }).then((res) => res.json()).then(json => {
                 var d = new Date();
                 var dateString = `${d.toLocaleTimeString()}`
-                this.setState({title: json[0].SensorName})
+                this.setState({title: json[0].ThingName})
                 if(this.state.data.length > 10) {
                     
                     this.setState(prevState => ({
-                        title: json[0].SensorName,
+                        title: json[0].ThingName,
                         labels: [...prevState.labels.splice(1,10), dateString],
-                        data: [...prevState.data.splice(1, 10), json[0].SensorState]
+                        data: [...prevState.data.splice(1, 10), json[0].ThingState]
                     }))
                 } else {
                     var d = new Date();
                     this.setState(prevState => ({
-                        title: json[0].SensorName,
+                        title: json[0].ThingName,
                         labels: [...prevState.labels, dateString],
-                        data: [...prevState.data, json[0].SensorState]
+                        data: [...prevState.data, json[0].ThingState]
                     }))
                 }
                 

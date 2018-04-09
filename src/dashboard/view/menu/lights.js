@@ -14,7 +14,7 @@ class Lights extends Component {
         console.log(json);
         var lights = json.map(light => {
           return(
-            <LightCard key={light.LightID} title={light.LightName} id={light.LightID} state={light.LightState}/>
+            <LightCard key={light.ThingID} title={light.ThingName} id={light.ThingID} state={light.ThingState}/>
           )
         })
         this.setState({lights: lights})
