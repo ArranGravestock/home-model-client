@@ -1,7 +1,6 @@
 import '../css/card.css';
 import  React, {Component} from 'react';
 import {HuePicker, AlphaPicker} from 'react-color';
-import {deviceSelected} from './device';
 import {Line} from 'react-chartjs';
 import FontAwesome from 'react-fontawesome';
 
@@ -190,45 +189,58 @@ class DeviceCard extends Component {
 }
 
 class LightCard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            currentState: 0,
-            brightness: 20,
-        }
+    state = {
+        brightness: this.props.brightness,
+        toggled: this.props.toggled
     }
 
-    handleOnChange = (value) => {
+    handleBrightness = (e) => {
         this.setState({
-            brightness: value
+            brightness: e.target.value
         })
     }
 
-    toggleLight = () => {
-        //update light
+    toggle = () => {
+        this.setState({
+            toggled: !this.state.toggled
+        }, () => {
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/light/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
+            .then(res => {
+                console.log("state set");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        })
+        console.log(this.state.toggled)      
+    }
+
+    handleColor = (color, e) => {
+        this.setState({
+            color: color.rgb
+        })
     }
 
     render() {
-        const {brightness} = this.state;
         return (
-        <div className="card card-light">
-            <div className="card-header">
-                <h1>{this.props.id}:{this.props.title}</h1>
+            <div className="card card-light">
+                <div className="card-header">
+                    <h1>{this.props.id}:{this.props.title}</h1>
 
-                <label className="switch">
-                    <input type="checkbox" className={this.props.title} checked={this.props.state ? true : false} onClick={this.toggleLight} onChange={()=> {!this.props.state}}/>
-                    <span className="slider round"></span>
-                </label>
-            </div>
-            <div className="card-content">
-                <div className="slider">
-                    <HuePicker width="100%"/>
-                    <div className="brightness-container">
-                        <input type="range" step="1" min="1" max="100" value={brightness} className="bightness-slider" onChange={this.handleOnChange}/>
+                    <label className="switch">
+                        <input type="checkbox" className={this.props.title} defaultChecked={this.state.toggled} onClick={this.toggle}/>
+                        <span className="slider round"></span>
+                    </label>
+                </div>
+                <div className="card-content">
+                    <div className="slider">
+                        <HuePicker width="100%" onChangeComplete={this.handleColor}/>
+                        <div className="brightness-container">
+                            <input type="range" step="1" min="1" max="100" className="bightness-slider" onChange={this.handleBrightness}/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         )
     }
 
@@ -243,7 +255,7 @@ class RemoteCard extends Component {
     }
 
     render() {
-        const {brightness} = this.state;
+
         return (
         <div className="card card-light">
             <div className="card-header">
