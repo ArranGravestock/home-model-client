@@ -11,43 +11,47 @@ class Logging extends Component {
   }
 
   componentWillMount() {
-    fetch(`http://localhost:3000/device/${localStorage.deviceid}/top/100`, {credentials: 'include'}).then((res) => res.json()
-      ).then((json => {
-        //console.log(json);
-        var logs = json.map(log => {
-           return (
-                {
-                    date: log.CreatedAt.slice(0, 10),
-                    time: log.CreatedAt.slice(11, 19),
-                    name: log.ThingName,
-                    state: log.ThingState,
-                    type: log.ThingType
-                }
-           )
+    fetch(`http://localhost:3000/device/${localStorage.deviceid}/top/1000`, {credentials: 'include'})
+    .then(res => res.json())
+    .then(json => {
+      var logs = json.map(log => {
+        return (
+          {
+            date: log.CreatedAt.slice(0, 10),
+            time: log.CreatedAt.slice(11, 19),
+            name: log.ThingName,
+            state: log.ThingState,
+            type: log.ThingType
+          }
+        )
         })
         this.setState({data: logs});
-      })
-    )
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
-  columns = [{
-    Header: 'Date',
-    accessor: 'date',
-  },{
-    Header: 'Time',
-    accessor: 'time',
-  }, {
-    Header: 'Name',
-    accessor: 'name', 
-  }, 
-  {
-    Header: 'Type',
-    accessor: 'type'
-  },
-  {
-    Header: 'State',
-    accessor: 'state'
-  }]
+  columns = [
+    {
+      Header: 'Date',
+      accessor: 'date',
+    },{
+      Header: 'Time',
+      accessor: 'time',
+    }, {
+      Header: 'Name',
+      accessor: 'name', 
+    }, 
+    {
+      Header: 'Type',
+      accessor: 'type'
+    },
+    {
+      Header: 'State',
+      accessor: 'state'
+    }
+  ]
 
   render() {
 

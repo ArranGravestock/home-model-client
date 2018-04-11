@@ -1,6 +1,6 @@
 import '../css/card.css';
 import  React, {Component} from 'react';
-import {HuePicker, AlphaPicker} from 'react-color';
+import {HuePicker} from 'react-color';
 import {Line} from 'react-chartjs';
 import FontAwesome from 'react-fontawesome';
 
@@ -10,41 +10,47 @@ class ChartCard extends Component {
         title: 'undefined',
         data: [],
         labels: []
-      }     
+    }     
 
-      ChartOptions = {
+    ChartOptions = {
         responsive: true,
         maintainAspectRatio: true,
-      }
+    }
 
-      fetch = () => {  fetch(`http://localhost:3000/device/${this.props.deviceid}/sensor/${this.props.sensorid}`, 
-      {
-          method: 'GET', 
-          credentials: 'include',
-          headers: {
-              'content-type':'application/json',
-              'access-control-allow-origin':'*'
-          }
-      }).then((res) => res.json()).then(json => {
-          var d = new Date();
-          var dateString = `${d.toLocaleTimeString()}`
-          this.setState({title: json[0].ThingName})
-          if(this.state.data.length > 10) {
-              
-              this.setState(prevState => ({
-                  title: json[0].ThingName,
-                  labels: [...prevState.labels.splice(1,10), dateString],
-                  data: [...prevState.data.splice(1, 10), json[0].ThingState]
-              }))
-          } else {
-              var d = new Date();
-              this.setState(prevState => ({
-                  title: json[0].ThingName,
-                  labels: [...prevState.labels, dateString],
-                  data: [...prevState.data, json[0].ThingState]
-              }))
-          }
-      })
+    fetch = () => {
+        fetch(`http://localhost:3000/device/${this.props.deviceid}/sensor/${this.props.sensorid}`, 
+        {
+            method: 'GET', 
+            credentials: 'include',
+            headers: {
+                'content-type':'application/json',
+                'access-control-allow-origin':'*'
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            var d = new Date();
+            var dateString = `${d.toLocaleTimeString()}`
+
+            this.setState({title: json[0].ThingName})
+
+            if(this.state.data.length > 10) {
+                this.setState(prevState => ({
+                    title: json[0].ThingName,
+                    labels: [...prevState.labels.splice(1,10), dateString],
+                    data: [...prevState.data.splice(1, 10), json[0].ThingState]
+                }))
+            } else {
+                this.setState(prevState => ({
+                    title: json[0].ThingName,
+                    labels: [...prevState.labels, dateString],
+                    data: [...prevState.data, json[0].ThingState]
+                }))
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     componentWillMount() {
@@ -66,9 +72,8 @@ class ChartCard extends Component {
     render() {
         var LineChartData = {
             labels: this.state.labels,
-            datasets: [
-              {
-                label: "Motion",
+            datasets: [{
+                label: "untitled",
                 fillColor: "rgba(151,187,205,0.2)",
                 strokeColor: "rgba(151,187,205,1)",
                 pointColor: "rgba(151,187,205,1)",
@@ -76,9 +81,9 @@ class ChartCard extends Component {
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
                 data: this.state.data,
-              }
-            ]
-          }
+            }]
+        }
+
         return(
             <div className="card card-chart">
                 <div className="card-header">
@@ -212,7 +217,7 @@ class LightCard extends Component {
                 console.log(err);
             })
         })
-        console.log(this.state.toggled)      
+         
     }
 
     handleColor = (color, e) => {
@@ -262,7 +267,7 @@ class RemoteCard extends Component {
                 <h1>{this.props.id}:{this.props.title}</h1>
 
                 <label className="switch">
-                    <input type="checkbox" className={this.props.title} checked={this.props.state ? true : false} onClick={this.toggleLight} onChange={()=> {!this.props.state}}/>
+                    <input type="checkbox" className={this.props.title} checked={this.props.state ? true : false} onClick={this.toggleLight} onChange={() => {!this.props.state}}/>
                     <span className="slider round"></span>
                 </label>
             </div>
