@@ -1,9 +1,5 @@
 # Client Home-Model
-A web app client with integration with home-model-api, using restful practice to retrieve data from a mysql database.
-
-## Technology
-The web application is made only using **React.js**, with a few dependencies which are listed below. Components are split into seperate files and their respect .css file rather than using inline styles, for example:
-> ./controls.js, ./controls.css
+A web app client with integration with home-model-api, using restful practice to retrieve data from a mysql database. The client is used to perceive any data or to control parts from the server `home-model-server`, respentation through graphs and statistics to provide knowledge about their smart hub.
 
 ## Installation for development
 Install dependencies:
@@ -14,6 +10,9 @@ Start a host on default port 3000:
 ```
 npm start
 ````
+## Built with
+- [React.js](https://reactjs.org/) - Framework used
+
 ## Dependencies
 ```
 "chart.js": "^1.1.1",
@@ -30,3 +29,9 @@ npm start
 "react-table": "^6.8.0",
 "whatwg-fetch": "^2.0.3"
 ```
+
+## Authors
+- Arran Gravestock
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details
