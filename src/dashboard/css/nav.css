@@ -8,6 +8,8 @@
     letter-spacing: .25px;
     height: 100vh;
     background-color: #364151;
+
+    padding-top: 4em;
     
     /*causes issues with min-max width in transitioning...
     transition: width .3s ease-in-out;

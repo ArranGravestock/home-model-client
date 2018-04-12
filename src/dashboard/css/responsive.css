@@ -3,11 +3,15 @@
 
     .controls {
         justify-content: flex-end;
+        position: initial;
+        width: auto;
     }
 
     .nav-sidebar {
         top: 0;
+        padding-top: 0;
     }
+
     .nav-hidden-true {
         margin-left: 0;
     }
@@ -29,6 +33,7 @@
 
     .wrapper {
         transition: all 0.3s ease-in-out;
+        padding-top: 0;
     }
 
     .content {

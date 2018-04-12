@@ -1,7 +1,7 @@
 import '../css/card.css';
 import  React, {Component} from 'react';
 import {HuePicker} from 'react-color';
-import {Line} from 'react-chartjs';
+import {Line, Doughnut, Pie} from 'react-chartjs';
 import FontAwesome from 'react-fontawesome';
 
 class ChartCard extends Component {
@@ -120,19 +120,146 @@ const MiscCard = ({obj, title, desc}) => (
     </div>
 )
 
-const StatsCard = ({title, stats, type, style}) => (
-    <div className="card card-stats">
-        <div className="card-header">
-            <h1>{title}</h1>
+class StatsDoughnut extends Component {
+    state = {
+        data: []
+    }     
+
+    ChartOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+    }
+
+    componentWillMount () {
+        fetch(`http://localhost:3000/device/${this.props.deviceid}/countallthings`, 
+        {
+            method: 'GET', 
+            credentials: 'include',
+            headers: {
+                'content-type':'application/json',
+                'access-control-allow-origin':'*'
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            json.map(data => {
+                this.setState(prevState => ({
+                    data: [...prevState.data, {value: data.TotalCount, label: data.ThingName}]
+                }))
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    render() {
+        var ChartData = this.state.data;
+
+        return (
+        <div className="card card-stats-doughnut">
+            <div className="card-header">
+                <h1>{this.props.title}</h1>
+            </div>
+            <div className="card-content">
+                <Pie data={ChartData} options={this.ChartOptions}/>
+            </div>
         </div>
-        <div className="card-content" style={style}>
-            <h2>{stats}</h2>
-            <FontAwesome className={type} name={(type==="stats-up") ? "long-arrow-up" : "long-arrow-down"}/>
-            <span className={type}>12.3%</span>
-            <span>this month</span>
-        </div>
-    </div>
-)
+        )
+    }
+}
+
+class StatCard extends Component {
+
+    state = {}
+
+    fetchCountByCategory = () => {
+        fetch(`http://localhost:3000/device/${this.props.deviceid}/category/${this.props.category}/count`, 
+        {
+            method: 'GET', 
+            credentials: 'include',
+            headers: {
+                'content-type':'application/json',
+                'access-control-allow-origin':'*'
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            json.map(data => {
+                this.setState({
+                    count: data.TotalCount
+                })
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    fetchAPICount = () => {
+        fetch(`http://localhost:3000/device/${this.props.deviceid}/count`, 
+        {
+            method: 'GET', 
+            credentials: 'include',
+            headers: {
+                'content-type':'application/json',
+                'access-control-allow-origin':'*'
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            json.map(data => {
+                this.setState({
+                    count: data.TotalCount
+                })
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    componentWillMount () {
+       if (this.props.type == "category") {
+            this.fetchCountByCategory()
+       } else if (this.props.type == "message") { 
+            this.fetchAPICount()
+       }
+    }
+
+    render() {
+    
+        var {icon, title} = this.props;
+        
+        var iconStyle = {
+          color: this.props.color,
+          background: this.props.color
+        };
+
+        var titleStyle = {
+            color: this.props.color,
+        }
+        
+        return (
+          
+          <div className="basic-card-container">
+            <div className="icon" style={iconStyle}>
+              <i className={icon} aria-hidden="true"></i>
+            </div>
+            
+            <div className="obj">
+              <span className="title" style={titleStyle}>{title}</span>
+              <div className="number">
+                <span>{this.state.count}</span>
+              </div>
+            </div>
+          </div>
+        )
+      }
+}
+
 
 class RegisterDeviceCard extends Component {
 
@@ -196,7 +323,7 @@ class DeviceCard extends Component {
 class LightCard extends Component {
     state = {
         brightness: this.props.brightness,
-        toggled: this.props.toggled
+        toggled: this.props.toggled,
     }
 
     handleBrightness = (e) => {
@@ -206,18 +333,15 @@ class LightCard extends Component {
     }
 
     toggle = () => {
-        this.setState({
-            toggled: !this.state.toggled
-        }, () => {
-            fetch(`http://localhost:3000/device/${localStorage.deviceid}/light/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
-            .then(res => {
-                console.log("state set");
-            })
-            .catch(err => {
-                console.log(err);
+        fetch(`http://localhost:3000/device/${localStorage.deviceid}/light/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
+        .then(res => {
+            this.setState({
+                toggled: !this.state.toggled,
             })
         })
-         
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     handleColor = (color, e) => {
@@ -279,4 +403,4 @@ class RemoteCard extends Component {
 
 }
 
-export {ChartCard, TextCard, MiscCard, StatsCard, LightCard, DeviceCard, RegisterDeviceCard, RemoteCard};
+export {ChartCard, TextCard, MiscCard, StatsDoughnut, LightCard, DeviceCard, RegisterDeviceCard, RemoteCard, StatCard};
