@@ -1,26 +1,38 @@
 import React, {Component} from 'react';
-import {RemoteCard} from '../card';
+import {RemoteCard, ErrorCard} from '../card';
 import 'whatwg-fetch';
 
 class Remotes extends Component {
 
     state = {}
-
     componentWillMount() {
-        fetch(`http://localhost:3000/device/${localStorage.deviceid}/remotes`, {credentials: 'include'})
-        .then(res => res.json())
-        .then(json => {
-            console.log(json);
-            var remotes = json.map(remote => {
-                return(
-                    <RemoteCard key={remote.ThingID} title={remote.ThingName} id={remote.ThingID} state={remote.ThingState}/>
-                )
+        if (localStorage.deviceid) {
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/remotes`, {credentials: 'include'})
+            .then(res => {
+                if (res.ok) {
+                  return res.json()
+                } else {
+                  throw Error(res.statusText)
+                }
+              })
+            .then(json => {
+                console.log(json);
+                var remotes = json.map(remote => {
+                    return(
+                        <RemoteCard key={remote.ThingID} title={remote.ThingName} id={remote.ThingID} state={remote.ThingState}/>
+                    )
+                })
+                this.setState({remotes: remotes})
             })
-            this.setState({remotes: remotes})
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .catch(err => {
+                console.log(err);
+                var errCard = <ErrorCard error={err.message} type="error"/>
+                this.setState({remotes: errCard})
+            })
+        } else {
+            var errCard = <ErrorCard error="no device found" type="warning"/>
+            this.setState({remotes: errCard})
+        }
     }
 
     render() {

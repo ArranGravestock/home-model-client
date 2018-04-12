@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {LightCard} from '../card';
+import {LightCard, ErrorCard} from '../card';
 import 'whatwg-fetch';
 
 class Lights extends Component {
@@ -7,21 +7,32 @@ class Lights extends Component {
   state = {}
 
   componentWillMount() {
-    fetch(`http://localhost:3000/device/${localStorage.deviceid}/lights`, {credentials: 'include'})
-    .then(res => res.json())
-    .then(json => {
-      console.log(json)
-      var lights = json.map(light => {
-        return(
-          <LightCard key={light.ThingID} title={light.ThingName} id={light.ThingID} toggled={light.ThingState} brightness={20}/>
-        )
+    if (localStorage.deviceid) {
+      fetch(`http://localhost:3000/device/${localStorage.deviceid}/lights`, {credentials: 'include'})
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw Error(res.statusText)
+        }
       })
-      this.setState({lights: lights})
-    })
-    .catch(err => {
-      console.log(err);
+      .then(json => {
+        console.log(json)
+        var lights = json.map(light => {
+          return(
+            <LightCard key={light.ThingID} title={light.ThingName} id={light.ThingID} toggled={light.ThingState} brightness={20}/>
+          )
+        })
+        this.setState({lights: lights})
+      })
+      .catch(err => {
+        var errCard = <ErrorCard error={err.message} type="error"/>
+        this.setState({lights: errCard})
+      })
+    } else {
+      var errCard = <ErrorCard error="no device found" type="warning"/>
+      this.setState({lights: errCard})
     }
-  )
 }
 
   render() {

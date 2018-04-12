@@ -2,7 +2,7 @@ import '../css/card.css';
 import  React, {Component} from 'react';
 import {HuePicker} from 'react-color';
 import {Line, Doughnut, Pie} from 'react-chartjs';
-import FontAwesome from 'react-fontawesome';
+// import FontAwesome from 'react-fontawesome';
 
 class ChartCard extends Component {
 
@@ -97,6 +97,23 @@ class ChartCard extends Component {
     }
 }
 
+class ErrorCard extends Component {
+    render() {
+        return (
+            <div className={`card card-error ${this.props.type}`}>
+                <div className={`card-icon card-${this.props.type}-icon `} >
+                
+                </div>
+                <div className="card-error-text">
+                    <div className="content">
+                        <p>{this.props.error}</p>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
 const TextCard = ({title, desc, state, style}) => (
     <div className="card card-text">
         <div className="card-header">
@@ -142,7 +159,7 @@ class StatsDoughnut extends Component {
         })
         .then(res => res.json())
         .then(json => {
-            json.map(data => {
+            json.forEach(data => {
                 this.setState(prevState => ({
                     data: [...prevState.data, {value: data.TotalCount, label: data.ThingName}]
                 }))
@@ -186,7 +203,7 @@ class StatCard extends Component {
         .then(res => res.json())
         .then(json => {
             console.log(json)
-            json.map(data => {
+            json.forEach(data => {
                 this.setState({
                     count: data.TotalCount
                 })
@@ -210,7 +227,7 @@ class StatCard extends Component {
         .then(res => res.json())
         .then(json => {
             console.log(json)
-            json.map(data => {
+            json.forEach(data => {
                 this.setState({
                     count: data.TotalCount
                 })
@@ -403,4 +420,4 @@ class RemoteCard extends Component {
 
 }
 
-export {ChartCard, TextCard, MiscCard, StatsDoughnut, LightCard, DeviceCard, RegisterDeviceCard, RemoteCard, StatCard};
+export {ChartCard, TextCard, MiscCard, StatsDoughnut, LightCard, DeviceCard, RegisterDeviceCard, RemoteCard, StatCard, ErrorCard};

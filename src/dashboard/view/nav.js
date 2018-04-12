@@ -4,11 +4,6 @@ import '../css/nav.css';
 
 const FontAwesome = require('react-fontawesome')
 
-//  {link: "/doors", icon: "lock", name: "doors"},
-//  {link: "/water", icon: "tint", name: "water"},
-//  {link: "/gas", icon: "fire", name: "gas"},
-// {link: "/temp", icon: "thermometer-half", name: "temperature"},
-// {link: "/cloud", icon: "cloud", name: "humidity"},
 const listItems = [
   {link: "/home", icon: "home", name: "home"},
   {link: "/logs", icon: "calendar", name: "data logging"},
@@ -21,10 +16,21 @@ const listItems = [
 )
 
 class Nav extends Component {
+
+  state = {
+    navHeader: 'Dashboard'  
+  }
+
+  componentWillMount() {
+    if (localStorage.device) {
+      this.setState({navHeader: localStorage.device})
+    }
+  }
+
   render() {
     return(
       <div className={`nav-sidebar ${this.props.className}`}>
-      <div className="nav-sidebar_title">{localStorage.device}</div>
+      <div className="nav-sidebar_title">{this.state.navHeader}</div>
         <ul className="nav-sidebar-list">
             {listItems}
         </ul>

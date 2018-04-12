@@ -157,3 +157,73 @@
     background: #fff;
     margin: 1em;
 }
+
+
+/*error cards*/
+
+.card-error {
+    border-radius: 3px;
+    display: flex;
+}
+
+.card-error > .card-icon {
+    align-self: center;
+    font-size: 1.5em;
+}
+
+
+.card-error > .card-error-text {
+    display: flex;
+}
+
+.card-error > .card-error-text, .card-error > .card-icon {
+    padding: .2em;
+    padding-left: .5em;
+}
+
+.card-error > .card-error-text > .content {
+    align-self: center;
+}
+
+.card-error > .card-error-text > .header > h1 {
+    text-align: left;
+    text-transform: capitalize;
+}
+
+
+/*icons for error types*/
+.info {
+    color: #059;
+    background-color: #BEF;
+}
+.card-info-icon::before {
+    font-family: fontawesome;
+    content: '\f057';
+}
+
+.success {
+    color: #270;
+    background-color: #DFF2BF;
+}
+.card-success-icon::before {
+    font-family: fontawesome;
+    content: '\f057';
+}
+
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.card-warning-icon::before {
+    font-family: fontawesome;
+    content: '\f057';
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.card-error-icon::before {
+    font-family: fontawesome;
+    content: '\f057';
+}

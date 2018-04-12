@@ -9,3 +9,7 @@
 .wrapper {
     padding-top: 4em;
 }
+
+.rt-noData {
+    z-index: 0 !important;
+}
