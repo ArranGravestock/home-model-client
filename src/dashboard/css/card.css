@@ -198,7 +198,7 @@
 }
 .card-info-icon::before {
     font-family: fontawesome;
-    content: '\f057';
+    content: '\f05a';
 }
 
 .success {
@@ -207,7 +207,7 @@
 }
 .card-success-icon::before {
     font-family: fontawesome;
-    content: '\f057';
+    content: '\f00c';
 }
 
 .warning {
@@ -216,7 +216,7 @@
 }
 .card-warning-icon::before {
     font-family: fontawesome;
-    content: '\f057';
+    content: '\f071';
 }
 
 .error {

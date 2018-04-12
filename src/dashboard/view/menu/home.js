@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StatsDoughnut, TextCard, StatCard, ErrorCard} from '../card';
-// import {Driver} from 'driver.js';
+import Driver from 'driver.js';
 
 class Home extends Component {
 
@@ -19,7 +19,7 @@ class Home extends Component {
       )
       this.setState({renderPage: render})
     } else {
-
+      //give them some kind of tutorial
     }
   }
 

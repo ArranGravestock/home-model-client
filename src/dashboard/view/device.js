@@ -7,7 +7,7 @@ class Device extends Component {
   componentWillMount() {
     fetch(`http://localhost:3000/devices`, {credentials: 'include'})
     .then(res => {
-      if (res.ok) {
+      if (res.ok && res.status != 204) {
         return res.json()
       } else {
         throw Error(res.statusText)
@@ -22,8 +22,13 @@ class Device extends Component {
       this.setState({devices: devices})
     })
     .catch(err => {
-      var errCard = <ErrorCard error={`${err.message}`} type="error"/>
-      this.setState({errors: errCard})
+      if (err.message == "No Content") {
+        //not the best way to handle this...
+        //no need to do anything at the moment...
+      } else {
+        var errCard = <ErrorCard error={`${err.message}`} type="error"/>
+        this.setState({errors: errCard})
+      }
     })
   }
 
