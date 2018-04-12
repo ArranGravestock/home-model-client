@@ -61,7 +61,7 @@ class Logging extends Component {
                 <h1>Data Logging</h1>
             </div>
             <div className="card-content">
-                <ReactTable className="-striped -highlight" data={this.state.data} columns={this.columns} filterable={true} resizable={false}/>
+                <ReactTable className="-striped -highlight" data={this.state.data} columns={this.columns} filterable={true} resizable={false} style={{height: 'calc(100vh - 10em)',}}/>
             </div>
         </div>
     )
