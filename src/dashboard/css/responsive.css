@@ -44,6 +44,23 @@
         align-items: flex-start;
     }
 
+    .content > .smallStats {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .content > div {
+        width: auto;
+    }
+
+    .content > .card-light {
+        width: 100%;
+    }
+
+    .content > .card-chart {
+        width: calc(50% - 2em);
+    }
+
     /*causes weird stretching*/
     .card > .card-content > canvas {
         min-width: 100%;
@@ -56,6 +73,10 @@
 @media (min-width: 1920px) {
     body {
         font-size: 16px;
+    }
+
+    .content > .card-chart {
+        width: calc(33% - 1.63em);
     }
 }
 

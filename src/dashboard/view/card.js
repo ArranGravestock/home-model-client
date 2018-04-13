@@ -277,47 +277,6 @@ class StatCard extends Component {
       }
 }
 
-
-class RegisterDeviceCard extends Component {
-
-    state = {
-        devicetoken: '',
-    }
-
-    registerDevice = (e) => {
-        e.preventDefault();
-        fetch(`http://localhost:3000/registerdevice/${this.state.devicetoken}`, {method: 'POST', credentials: 'include'}).then(
-            () => {
-                alert("new device registered");
-            }
-        ).catch(
-            () => {
-                alert("device token incorrect!");
-            }
-        )
-    }
-
-    handleChange = prop => (event) => {
-        this.setState({[prop]: event.target.value})
-    }
-
-    render() {
-        return (
-            <div className="card card-text">
-                <div className="card-header">
-                    <h1>Register a new device</h1>
-                </div>
-                <div className="card-content">
-                    <form>
-                        <input type="text" name="deviceid" onChange={this.handleChange("devicetoken")}/>
-                        <button onClick={this.registerDevice}>Add</button>
-                    </form>
-                </div>
-            </div>
-        )
-    }
-}
-
 class DeviceCard extends Component {
     updateDevice = (name, id) => {
         localStorage.deviceid = id;
@@ -350,14 +309,16 @@ class LightCard extends Component {
     }
 
     toggle = () => {
-        fetch(`http://localhost:3000/device/${localStorage.deviceid}/light/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
-        .then(res => {
-            this.setState({
-                toggled: !this.state.toggled,
+        this.setState({
+            toggled: !this.state.toggled,
+        }, () => {
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/light/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
+            .then(res => {
+                //everything went well...
             })
-        })
-        .catch(err => {
-            console.log(err);
+            .catch(err => {
+                console.log(err);
+            })
         })
     }
 
@@ -420,4 +381,4 @@ class RemoteCard extends Component {
 
 }
 
-export {ChartCard, TextCard, MiscCard, StatsDoughnut, LightCard, DeviceCard, RegisterDeviceCard, RemoteCard, StatCard, ErrorCard};
+export {ChartCard, TextCard, MiscCard, StatsDoughnut, LightCard, DeviceCard, RemoteCard, StatCard, ErrorCard};

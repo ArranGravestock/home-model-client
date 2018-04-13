@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import {DeviceCard, ErrorCard, RegisterDeviceCard} from './card';
 
 class Device extends Component {
-  state = {}
 
-  componentWillMount() {
+  state = {
+    devicetoken: '',
+  }
+
+  fetchDevices = () => {
     fetch(`http://localhost:3000/devices`, {credentials: 'include'})
     .then(res => {
       if (res.ok && res.status != 204) {
@@ -32,11 +35,43 @@ class Device extends Component {
     })
   }
 
+  componentWillMount() {
+    this.fetchDevices(); 
+  }
+
+  registerDevice = (e) => {
+      e.preventDefault();
+      fetch(`http://localhost:3000/registerdevice/${this.state.devicetoken}`, {method: 'POST', credentials: 'include'}).then(
+          () => {
+              alert("new device registered");
+              this.fetchDevices();
+          }
+      ).catch(
+          () => {
+              alert("device token incorrect!");
+          }
+      )
+  }
+
+  handleChange = prop => (event) => {
+      this.setState({[prop]: event.target.value})
+  }
+
   render() {
     return (
       <div>
         {this.state.errors}
-        <RegisterDeviceCard/>
+        <div className="card card-text">
+          <div className="card-header">
+              <h1>Register a new device</h1>
+          </div>
+          <div className="card-content">
+              <form>
+                  <input type="text" name="deviceid" onChange={this.handleChange("devicetoken")}/>
+                  <button onClick={this.registerDevice}>Add</button>
+              </form>
+          </div>
+        </div>
         {this.state.devices}
       </div>
     )

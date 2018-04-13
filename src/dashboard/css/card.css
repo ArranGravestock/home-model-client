@@ -145,7 +145,7 @@
 .basic-card-container > .obj {
     padding: 1em;
     min-width: 10em;
-    margin: auto;
+    margin: auto 0 auto 0;
 }
 
 .basic-card-container  > .obj > .number {
@@ -157,6 +157,8 @@
     background: #fff;
     margin: 1em;
 }
+
+
 
 
 /*error cards*/
