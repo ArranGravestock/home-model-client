@@ -18,7 +18,7 @@ class ChartCard extends Component {
     }
 
     fetch = () => {
-        fetch(`http://localhost:3000/device/${this.props.deviceid}/sensor/${this.props.sensorid}`, 
+        fetch(`http://localhost:3000/device/${this.props.deviceid}/type/sensor/${this.props.sensorid}`, 
         {
             method: 'GET', 
             credentials: 'include',

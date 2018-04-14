@@ -5,9 +5,10 @@ import 'whatwg-fetch';
 class Remotes extends Component {
 
     state = {}
+
     componentWillMount() {
         if (localStorage.deviceid) {
-            fetch(`http://localhost:3000/device/${localStorage.deviceid}/remotes`, {credentials: 'include'})
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/type/remote`, {credentials: 'include'})
             .then(res => {
                 if (res.ok) {
                   return res.json()
@@ -19,7 +20,7 @@ class Remotes extends Component {
                 console.log(json);
                 var remotes = json.map(remote => {
                     return(
-                        <RemoteCard key={remote.ThingID} title={remote.ThingName} id={remote.ThingID} state={remote.ThingState}/>
+                        <RemoteCard key={remote.ThingID} title={remote.ThingName} toggled={remote.ThingState} id={remote.ThingID}/>
                     )
                 })
                 this.setState({remotes: remotes})

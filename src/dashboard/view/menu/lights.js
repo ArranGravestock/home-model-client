@@ -9,7 +9,7 @@ class Lights extends Component {
   componentWillMount() {
     if (localStorage.deviceid) {
       
-      fetch(`http://localhost:3000/device/${localStorage.deviceid}/lights`, {credentials: 'include'})
+      fetch(`http://localhost:3000/device/${localStorage.deviceid}/type/light`, {credentials: 'include'})
       .then(res => {
         if (res.ok) {
           return res.json()

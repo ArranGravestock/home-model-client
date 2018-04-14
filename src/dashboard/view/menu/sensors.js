@@ -9,7 +9,7 @@ class Sensors extends Component {
 
   componentWillMount() {
     if (localStorage.deviceid) {
-      fetch(`http://localhost:3000/device/${localStorage.deviceid}/sensors`, {credentials: 'include'})
+      fetch(`http://localhost:3000/device/${localStorage.deviceid}/type/sensor`, {credentials: 'include'})
       .then(res => {
         if (res.ok) {
           return res.json()
