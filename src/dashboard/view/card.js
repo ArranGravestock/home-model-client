@@ -312,7 +312,7 @@ class LightCard extends Component {
         this.setState({
             toggled: !this.state.toggled,
         }, () => {
-            fetch(`http://localhost:3000/device/${localStorage.deviceid}/light/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/thing/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
             .then(res => {
                 //everything went well...
             })
@@ -354,11 +354,23 @@ class LightCard extends Component {
 }
 
 class RemoteCard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            currentState: 0
-        }
+
+    state = {
+        toggled: this.props.toggled,
+    }
+
+    toggle = () => {
+        this.setState({
+            toggled: !this.state.toggled,
+        }, () => {
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/thing/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
+            .then(res => {
+                //everything went well...
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        })
     }
 
     render() {
@@ -369,7 +381,7 @@ class RemoteCard extends Component {
                 <h1>{this.props.id}:{this.props.title}</h1>
 
                 <label className="switch">
-                    <input type="checkbox" className={this.props.title} checked={this.props.state ? true : false} onClick={this.toggleLight} onChange={() => {!this.props.state}}/>
+                <input type="checkbox" className={this.props.title} defaultChecked={this.state.toggled} onClick={this.toggle}/>
                     <span className="slider round"></span>
                 </label>
             </div>

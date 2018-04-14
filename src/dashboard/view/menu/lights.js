@@ -8,6 +8,7 @@ class Lights extends Component {
 
   componentWillMount() {
     if (localStorage.deviceid) {
+      
       fetch(`http://localhost:3000/device/${localStorage.deviceid}/lights`, {credentials: 'include'})
       .then(res => {
         if (res.ok) {
@@ -29,6 +30,7 @@ class Lights extends Component {
         var errCard = <ErrorCard error={err.message} type="error"/>
         this.setState({lights: errCard})
       })
+
     } else {
       var errCard = <ErrorCard error="no device found" type="warning"/>
       this.setState({lights: errCard})
