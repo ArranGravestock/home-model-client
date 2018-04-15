@@ -12,7 +12,7 @@ const logout = () => {
             credentials: 'include',
             headers: {
                 'content-type':'application/json',
-                'access-control-allow-origin':'*'
+                'Access-Control-Allow-Origin':'localhost:3001',
             }
         }
     )

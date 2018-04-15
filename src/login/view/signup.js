@@ -35,7 +35,7 @@ class Signup extends Component {
         const {email, username, password, confirm_pass} = this.state.trim();
 
         if(validateForm(email, username, password, email, confirm_pass)) {
-            fetch(`http://localhost:3000/signup?username=${username}&password=${password}&email=${email}`, {method: 'POST'})
+            fetch(`http://localhost:3000/signup?username=${username}&password=${password}&email=${email}`, {method: 'POST', headers: { 'Access-Control-Allow-Origin':'localhost:3001',}})
             .then(res => {
                 if (res.ok) {
                     alert("Successfully registered!");

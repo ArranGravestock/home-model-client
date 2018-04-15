@@ -24,7 +24,7 @@ class ChartCard extends Component {
             credentials: 'include',
             headers: {
                 'content-type':'application/json',
-                'access-control-allow-origin':'*'
+                'Access-Control-Allow-Origin':'localhost:3001',
             }
         })
         .then(res => res.json())
@@ -154,7 +154,7 @@ class StatsDoughnut extends Component {
             credentials: 'include',
             headers: {
                 'content-type':'application/json',
-                'access-control-allow-origin':'*'
+                'Access-Control-Allow-Origin':'localhost:3001',
             }
         })
         .then(res => res.json())
@@ -197,7 +197,7 @@ class StatCard extends Component {
             credentials: 'include',
             headers: {
                 'content-type':'application/json',
-                'access-control-allow-origin':'*'
+                'Access-Control-Allow-Origin':'localhost:3001',
             }
         })
         .then(res => res.json())
@@ -220,7 +220,7 @@ class StatCard extends Component {
             credentials: 'include',
             headers: {
                 'content-type':'application/json',
-                'access-control-allow-origin':'*'
+                'Access-Control-Allow-Origin':'localhost:3001',
             }
         })
         .then(res => res.json())
@@ -310,7 +310,9 @@ class LightCard extends Component {
         this.setState({
             toggled: !this.state.toggled,
         }, () => {
-            fetch(`http://localhost:3000/device/${localStorage.deviceid}/thing/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/thing/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', headers: {
+                'Access-Control-Allow-Origin':'localhost:3001',
+            }, method: 'POST'})
             .then(res => {
                 //everything went well...
             })
@@ -361,7 +363,9 @@ class RemoteCard extends Component {
         this.setState({
             toggled: !this.state.toggled,
         }, () => {
-            fetch(`http://localhost:3000/device/${localStorage.deviceid}/thing/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', method: 'POST'})
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/thing/${this.props.id}/state/${this.state.toggled}`, {credentials: 'include', headers: {
+                'Access-Control-Allow-Origin':'localhost:3001',
+            }, method: 'POST'})
             .then(res => {
                 //everything went well...
             })

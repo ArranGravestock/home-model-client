@@ -13,7 +13,7 @@ class Logging extends Component {
 
   componentWillMount() {
     if (localStorage.deviceid) {
-      fetch(`http://localhost:3000/device/${localStorage.deviceid}/top/1000`, {credentials: 'include'})
+      fetch(`http://localhost:3000/device/${localStorage.deviceid}/top/1000`, {credentials: 'include', headers: { 'Access-Control-Allow-Origin':'localhost:3001',}})
       .then(res => res.json())
       .then(json => {
         var logs = json.map(log => {

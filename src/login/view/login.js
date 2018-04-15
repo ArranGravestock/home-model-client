@@ -35,7 +35,7 @@ class LoginForm extends Component {
 	}
 
     login = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         
         fetch(`http://localhost:3000/login`, 
             {
@@ -43,8 +43,9 @@ class LoginForm extends Component {
                 credentials: 'include',
                 headers: {
                     'content-type':'application/json',
-                    'access-control-allow-origin':'*'
-                }, 
+                    'Access-Control-Allow-Origin':'localhost:3001',
+                },
+                //mode: 'cors',
                 body: JSON.stringify(this.state.user)
             }
         )
@@ -58,7 +59,6 @@ class LoginForm extends Component {
             }
         })
     }
-
 
     updatePass = (e) => {
         this.setState({
@@ -142,7 +142,7 @@ class LoginForm extends Component {
                         </form>
                     </div>
                     <div className="card-action">
-                        <button onClick={this.login}><Link to="/auth/home">log in</Link></button>
+                        <button type="button" onClick={this.login}><Link to="/auth/home">log in</Link></button>
                         <p>Don't have an account? <Link to="/signup">Create one</Link></p>
                     </div>
                 </div>

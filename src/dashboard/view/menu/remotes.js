@@ -8,7 +8,7 @@ class Remotes extends Component {
 
     componentWillMount() {
         if (localStorage.deviceid) {
-            fetch(`http://localhost:3000/device/${localStorage.deviceid}/type/remote`, {credentials: 'include'})
+            fetch(`http://localhost:3000/device/${localStorage.deviceid}/type/remote`, {credentials: 'include', headers: { 'Access-Control-Allow-Origin':'localhost:3001',}})
             .then(res => {
                 if (res.ok) {
                   return res.json()

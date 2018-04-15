@@ -8,7 +8,10 @@ class Device extends Component {
   }
 
   fetchDevices = () => {
-    fetch(`http://localhost:3000/devices`, {credentials: 'include'})
+    fetch(`http://localhost:3000/devices`, {credentials: 'include', headers: {
+      'content-type':'application/json',
+      'Access-Control-Allow-Origin':'localhost:3001',
+  },})
     .then(res => {
       if (res.ok && res.status !== 204) {
         return res.json()
@@ -41,7 +44,7 @@ class Device extends Component {
 
   registerDevice = (e) => {
       e.preventDefault();
-      fetch(`http://localhost:3000/registerdevice/${this.state.devicetoken}`, {method: 'POST', credentials: 'include'}).then(
+      fetch(`http://localhost:3000/registerdevice/${this.state.devicetoken}`, {method: 'POST', credentials: 'include', headers: { 'Access-Control-Allow-Origin':'localhost:3001'}}).then(
           () => {
               alert("new device registered");
               this.fetchDevices();
