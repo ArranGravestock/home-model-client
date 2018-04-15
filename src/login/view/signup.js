@@ -14,9 +14,9 @@ import IconButton from 'material-ui/IconButton';
 import {FormControl} from 'material-ui/Form'
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 
-const validateForm = (user, pass, email) => {
+const validateForm = (user, pass, confirm_pass, email) => {
     //regex testing
-    return true;
+    return false;
 }
 
 class Signup extends Component {
@@ -25,15 +25,19 @@ class Signup extends Component {
         showPassword: false,
         redirectToReferrer: false,
         username: '',
-        password: ''
+        password: '',
+        confirm_pass: '',
+        email: ''
     }
 
     register = (e) => {
-        //e.preventDefault();
-        if(validateForm(this.state.username, this.state.password, this.state.email, this.state.confirm_password)) {
-            fetch(`http://localhost:3000/signup?username=${this.state.username}&password=${this.state.password}&email=${this.state.email}`, {method: 'POST'}).then((res) => {
-                if (res.status >= 200 && res.status < 300) {
-                    console.log(res);
+        e.preventDefault();
+        const {email, username, password, confirm_pass} = this.state.trim();
+
+        if(validateForm(email, username, password, email, confirm_pass)) {
+            fetch(`http://localhost:3000/signup?username=${username}&password=${password}&email=${email}`, {method: 'POST'})
+            .then(res => {
+                if (res.ok) {
                     alert("Successfully registered!");
                 } else {
                     alert("something went wrong!");
@@ -42,20 +46,8 @@ class Signup extends Component {
         }
     }
 
-    updatePass = (e) => {
-        this.setState({
-            password: e.target.value
-        })
-    }
-
-    updateUser = (e) => {
-        this.setState({
-            username: e.target.value
-        })
-    }
-
-    handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
+    handleChange = prop => e => {
+        this.setState({ [prop]: e.target.value });
     };
 
     handleClickShowPasssword = () => {
@@ -92,7 +84,7 @@ class Signup extends Component {
 
                             <FormControl className="login-form-control">
                                 <InputLabel htmlFor="input-email">Email</InputLabel>
-                                <Input id="input-email" value={this.state.email} onChange={this.handleChange("email")} 
+                                <Input id="input-email" type="email" value={this.state.email} onChange={this.handleChange("email")} 
                                 />
                             </FormControl>
 
@@ -127,8 +119,8 @@ class Signup extends Component {
                             <Input
                                 id="input-password-confirm"
                                 type={this.state.showPassword ? "text" : "password"}
-                                value={this.state.confirm_password}
-                                onChange={this.handleChange("confirm_password")}
+                                value={this.state.confirm_pass}
+                                onChange={this.handleChange("confirm_pass")}
                                 endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton

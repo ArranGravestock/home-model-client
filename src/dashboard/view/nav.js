@@ -5,6 +5,7 @@ import FontAwesome from 'react-fontawesome';
 
 const items = [
   {link: "/home", icon: "home", name: "home"},
+  {link: "/device", icon: "tablet", name: "devices"},
   {link: "/logs", icon: "calendar", name: "data logging"},
   {link: "/sensors", icon: "user", name: "sensors"},
   {link: "/lights", icon: "lightbulb-o", name: "lights"},
@@ -15,7 +16,7 @@ class Nav extends Component {
 
   navItems = items.map((item, i) => 
     <li key={i} onClick={item.onClick}><Link to={`/auth${item.link}`}><FontAwesome name={item.icon}/>{item.name}</Link></li>
-  ) 
+  )
 
   render() {
     return(

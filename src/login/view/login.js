@@ -36,39 +36,29 @@ class LoginForm extends Component {
 
     login = (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(this.state.user));
+        
         fetch(`http://localhost:3000/login`, 
-        {
-            method: 'POST', 
-            credentials: 'include',
-            headers: {
-                'content-type':'application/json',
-                'access-control-allow-origin':'*'
-            }, 
-            body: JSON.stringify(this.state.user)
-        }
-        ).then((res) => {
-            if (res.status >= 200 && res.status < 300) {
-                //return (<Link to="auth/dashboard"/>)
+            {
+                method: 'POST', 
+                credentials: 'include',
+                headers: {
+                    'content-type':'application/json',
+                    'access-control-allow-origin':'*'
+                }, 
+                body: JSON.stringify(this.state.user)
+            }
+        )
+        .then(res => {
+            if (res.ok) {
                 auth.authenticate(() => {
-                    console.log("redirect true");
                     this.setState({ redirectToReferrer: true })
-                });
-                // fetch(`http://localhost:3000/devices`, {credentials: 'include'}).then((res)=> {
-                //     if (res.status >= 200 && res.status < 300) {
-                //         console.log(res);
-                //     }
-                // })
+                })
             } else {
                 alert("Password or username is incorrect!");
             }
         })
     }
 
-    componentWillMount = () => {
-       // let ws = new WebSocket(`ws://localhost:3000`);
-        //ws.send("here's some text");
-    }
 
     updatePass = (e) => {
         this.setState({

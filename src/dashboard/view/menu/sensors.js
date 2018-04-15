@@ -18,7 +18,6 @@ class Sensors extends Component {
         }
       })
       .then(json => {
-        console.log(json);
         var sensors = json.map(sensor => {
           return(
             <ChartCard key={sensor.ThingID} deviceid={localStorage.deviceid} sensorid={sensor.ThingID}/>

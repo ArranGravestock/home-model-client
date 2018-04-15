@@ -73,3 +73,8 @@
 .nav-hidden-false {
     width: 0px;
 }
+
+.controls > li:hover {
+    background-color: #374252;
+    cursor: pointer;
+}

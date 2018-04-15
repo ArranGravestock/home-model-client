@@ -1,7 +1,7 @@
 import '../css/card.css';
 import  React, {Component} from 'react';
 import {HuePicker} from 'react-color';
-import {Line, Doughnut, Pie} from 'react-chartjs';
+import {Line, Pie} from 'react-chartjs';
 // import FontAwesome from 'react-fontawesome';
 
 class ChartCard extends Component {
@@ -202,7 +202,6 @@ class StatCard extends Component {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             json.forEach(data => {
                 this.setState({
                     count: data.TotalCount
@@ -226,7 +225,6 @@ class StatCard extends Component {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             json.forEach(data => {
                 this.setState({
                     count: data.TotalCount
@@ -239,9 +237,9 @@ class StatCard extends Component {
     }
 
     componentWillMount () {
-       if (this.props.type == "category") {
+       if (this.props.type === "category") {
             this.fetchCountByCategory()
-       } else if (this.props.type == "message") { 
+       } else if (this.props.type === "message") { 
             this.fetchAPICount()
        }
     }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {DeviceCard, ErrorCard, RegisterDeviceCard} from './card';
+import {DeviceCard, ErrorCard} from '../card';
 
 class Device extends Component {
 
@@ -10,7 +10,7 @@ class Device extends Component {
   fetchDevices = () => {
     fetch(`http://localhost:3000/devices`, {credentials: 'include'})
     .then(res => {
-      if (res.ok && res.status != 204) {
+      if (res.ok && res.status !== 204) {
         return res.json()
       } else {
         throw Error(res.statusText)
@@ -25,7 +25,7 @@ class Device extends Component {
       this.setState({devices: devices})
     })
     .catch(err => {
-      if (err.message == "No Content") {
+      if (err.message === "No Content") {
         //not the best way to handle this...
         //no need to do anything at the moment...
       } else {

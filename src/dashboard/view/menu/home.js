@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StatsDoughnut, TextCard, StatCard, ErrorCard} from '../card';
-import Driver from 'driver.js';
+import {StatsDoughnut, StatCard} from '../card';
+//import Driver from 'driver.js';
 
 class Home extends Component {
 

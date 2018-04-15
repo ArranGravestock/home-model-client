@@ -17,7 +17,6 @@ class Remotes extends Component {
                 }
               })
             .then(json => {
-                console.log(json);
                 var remotes = json.map(remote => {
                     return(
                         <RemoteCard key={remote.ThingID} title={remote.ThingName} toggled={remote.ThingState} id={remote.ThingID}/>
