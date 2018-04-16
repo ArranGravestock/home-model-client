@@ -157,24 +157,41 @@
 
 /*error cards*/
 
+.status-messages {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 3;
+    font-size: 1em;
+}
+
+.status-messages > li {
+    padding: .5em;
+}
+
 .card-error {
-    border-radius: 3px;
+    border-radius: 2px;
     display: flex;
+    justify-content: center;
+    padding: .5em;
 }
 
 .card-error > .card-icon {
     align-self: center;
-    font-size: 1.5em;
 }
 
+.card-error > .button-close {
+    align-self: center;
+}
 
 .card-error > .card-error-text {
     display: flex;
 }
 
 .card-error > .card-error-text, .card-error > .card-icon {
-    padding: .2em;
-    padding-left: .5em;
+    padding-right: .25em;
 }
 
 .card-error > .card-error-text > .content {
