@@ -15,7 +15,12 @@ const items = [
 class Nav extends Component {
 
   navItems = items.map((item, i) => 
-    <li key={i} onClick={item.onClick}><Link to={`/auth${item.link}`}><FontAwesome name={item.icon}/>{item.name}</Link></li>
+    <li key={i} onClick={item.onClick}>
+      <Link to={`/auth${item.link}`}>
+          <FontAwesome name={item.icon}/>
+          <span>{item.name}</span>
+      </Link>
+    </li>
   )
 
   render() {

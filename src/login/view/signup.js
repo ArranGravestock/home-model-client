@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 // import {fakeAuth} from './privateroute';
 import '../css/login.css'
+import '../../css/button.css'
+
 import 'whatwg-fetch';
 
 
@@ -136,8 +138,8 @@ class Signup extends Component {
                             </FormControl>
                         </form>
                     </div>
-                    <div className="card-action">
-                        <button onClick={this.register}>Register</button>
+                    <div className="card-action" style={{textAlign: 'center'}}>
+                        <button className="button-blue" onClick={this.register}>Register</button>
                         <p>Already have an account? <Link to="/login">Log in</Link></p>
                     </div>
                 </div>

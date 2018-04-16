@@ -7,10 +7,8 @@
 }
 
 .card-login {
-    max-width: 40%;
-    min-width: 280px;
-    max-height: 60%;
-    min-height: 450px;
+    max-width: 30%;
+    min-width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,8 +21,8 @@
 }
 
 .card-login > .card-header > h1 {
-    text-align: center;
-    color: #111;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.87);
     font-size: 2em;
 }
 
@@ -39,8 +37,8 @@
     flex-direction: column;
 }
 
-.login-controls > .login-form-control{
-    margin: 1em;
+.login-controls > div {
+    padding-bottom: 1em;
 }
 
 .card-action {
@@ -52,48 +50,7 @@
 }
 
 .card-action > p > a {
-    color: #2196f3;
+    color: #303B4D;
     text-decoration: none;
     font-weight: 500;
 }
-
-.card-action > button {
-    margin: .1em;
-    padding: 8px 16px;
-    border: none;
-    background-color: #2196f3;
-    min-width: 88px;
-    min-height: 36px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    border-radius: 2px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    font-size: .875em;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-}
-
-.card-action > button {
-    color: white;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-.card-action > button > a {
-    color: white;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-.card-action > button:hover {
-    cursor: pointer;
-    background-color: #087DDA;
-
-}
-
-.card-action > button:visited {
-    text-decoration: none;
-}
-

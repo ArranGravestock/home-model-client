@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import 'whatwg-fetch';
 
 import '../css/login.css'
+import '../../css/button.css'
 
 
 
@@ -18,10 +19,11 @@ const auth = {
     isAuthenticated: false,
     authenticate(cb) {
       this.isAuthenticated = true
+      setTimeout(cb, 100);
     },
     signout(cb) {
       this.isAuthenticated = false
-      setTimeout(cb, 100)
+      setTimeout(cb, 100);
     }
 }
 
@@ -35,7 +37,6 @@ class LoginForm extends Component {
 	}
 
     login = (e) => {
-        //e.preventDefault();
         
         fetch(`http://localhost:3000/login`, 
             {
@@ -57,18 +58,6 @@ class LoginForm extends Component {
             } else {
                 alert("Password or username is incorrect!");
             }
-        })
-    }
-
-    updatePass = (e) => {
-        this.setState({
-            password: e.target.value
-        })
-    }
-
-    updateUser = (e) => {
-        this.setState({
-            username: e.target.value
         })
     }
 
@@ -104,7 +93,7 @@ class LoginForm extends Component {
             <div className="wrapper-login">
                 <div className="card card-login">
                     <div className="card-header">
-                        <h1>LOGIN</h1>
+                        <h1>Login</h1>
                     </div>
                     <div className="card-error">
                     {this.state.error !== '' ? (<p style={{color: '#f44336'}}>this.state.error</p>) : ('')}
@@ -140,11 +129,14 @@ class LoginForm extends Component {
                             <FormHelperText id="password-reset">Forgot your password? <Link to="/forgot-details">Click here</Link></FormHelperText>
                             </FormControl>
                         </form>
+                        
                     </div>
-                    <div className="card-action">
-                        <button type="button" onClick={this.login}><Link to="/auth/home">log in</Link></button>
-                        <p>Don't have an account? <Link to="/signup">Create one</Link></p>
+
+                    <div className="card-action" style={{textAlign: 'center'}}>
+                            <Link to="/auth/home"><button className="button-blue" type="button" onClick={this.login}>log in</button></Link>
+                            <p>Don't have an account? <Link to="/signup">Create one</Link></p>
                     </div>
+                    
                 </div>
             </div>
         )

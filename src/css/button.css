@@ -1,0 +1,29 @@
+.button-blue {
+    margin: .1em;
+    padding: 8px 16px;
+    border: none;
+    background-color: #505B6B;
+    min-width: 88px;
+    min-height: 36px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    border-radius: 2px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-size: .875em;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.button-blue:hover {
+    cursor: pointer;
+    background-color: #303B4D;
+
+}
+
+.button-blue:visited {
+    text-decoration: none;
+}

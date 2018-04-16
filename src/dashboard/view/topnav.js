@@ -5,24 +5,20 @@ import {withRouter} from 'react-router-dom';
 import Wrapper from './wrapper';
 import {auth} from '../../login/view/login';
 
-const logout = () => {
-    fetch(`http://localhost:3000/logout`, 
-        {
-            method: 'POST', 
-            credentials: 'include',
-            headers: {
-                'content-type':'application/json',
-                'Access-Control-Allow-Origin':'localhost:3001',
-            }
-        }
-    )
-}
-
 const AuthButton = withRouter(({ history }) => (
 
     auth.isAuthenticated ? (
         <li onClick={() => {
-            logout()
+            fetch(`http://localhost:3000/logout`, 
+                {
+                    method: 'POST', 
+                    credentials: 'include',
+                    headers: {
+                        'content-type':'application/json',
+                        'Access-Control-Allow-Origin':'localhost:3001',
+                    }
+                }
+            )
             auth.signout(() => history.push('/login'))
         }}>logout</li>
     ) : (
@@ -35,7 +31,7 @@ class TopNav extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            toggled: false,
+            toggled: true,
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -53,7 +49,7 @@ class TopNav extends Component {
         <div>
             <div>
                 <ul className="controls">
-                    <li onClick={this.handleClick}>
+                    <li className="nav-button-close" onClick={this.handleClick}>
                         {this.state.toggled ? 'close' : 'menu'}
                     </li>
                     <AuthButton/>

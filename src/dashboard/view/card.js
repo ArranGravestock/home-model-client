@@ -1,8 +1,9 @@
 import '../css/card.css';
 import  React, {Component} from 'react';
-import {HuePicker} from 'react-color';
 import {Line, Pie} from 'react-chartjs';
 // import FontAwesome from 'react-fontawesome';
+
+import '../../css/button.css'
 
 class ChartCard extends Component {
 
@@ -287,7 +288,7 @@ class DeviceCard extends Component {
                 <h1>{this.props.title}</h1>
             </div>
             <div className="card-content">
-                <button onClick={() => this.updateDevice(this.props.title, this.props.id)}>Select</button>
+                <button className="button-blue" onClick={() => this.updateDevice(this.props.title, this.props.id)}>Select</button>
             </div>
         </div>
         )
@@ -332,20 +333,12 @@ class LightCard extends Component {
         return (
             <div className="card card-light">
                 <div className="card-header">
-                    <h1>{this.props.id}:{this.props.title}</h1>
+                    <h1>{this.props.title}</h1>
 
                     <label className="switch">
                         <input type="checkbox" className={this.props.title} defaultChecked={this.state.toggled} onClick={this.toggle}/>
                         <span className="slider round"></span>
                     </label>
-                </div>
-                <div className="card-content">
-                    <div className="slider">
-                        <HuePicker width="100%" onChangeComplete={this.handleColor}/>
-                        <div className="brightness-container">
-                            <input type="range" step="1" min="1" max="100" className="bightness-slider" onChange={this.handleBrightness}/>
-                        </div>
-                    </div>
                 </div>
             </div>
         )
@@ -380,14 +373,12 @@ class RemoteCard extends Component {
         return (
         <div className="card card-light">
             <div className="card-header">
-                <h1>{this.props.id}:{this.props.title}</h1>
+                <h1>{this.props.title}</h1>
 
                 <label className="switch">
                 <input type="checkbox" className={this.props.title} defaultChecked={this.state.toggled} onClick={this.toggle}/>
                     <span className="slider round"></span>
                 </label>
-            </div>
-            <div className="card-content">
             </div>
         </div>
         )

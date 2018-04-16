@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import {DeviceCard, ErrorCard} from '../card';
+import '../../css/card.css';
+import '../../css/device.css'
+
+import Input, { InputLabel } from 'material-ui/Input';
+import {FormControl} from 'material-ui/Form'
 
 class Device extends Component {
 
@@ -65,17 +70,19 @@ class Device extends Component {
       <div>
         {this.state.errors}
         <div className="card card-text">
-          <div className="card-header">
-              <h1>Register a new device</h1>
-          </div>
           <div className="card-content">
-              <form>
-                  <input type="text" name="deviceid" onChange={this.handleChange("devicetoken")}/>
-                  <button onClick={this.registerDevice}>Add</button>
+              <form style={{display: 'flex', flexDirection: 'column'}}>
+                <FormControl style={{paddingBottom: '1.5em'}} className="login-form-control">
+                  <InputLabel htmlFor="input-devicetoken" >Enter your device token</InputLabel>
+                  <Input id="input-devicetoken" value={this.state.name} onChange={this.handleChange("devicetoken")} />
+                </FormControl>
+                <button className="button-blue" onClick={this.registerDevice}>register new device</button>
               </form>
           </div>
         </div>
-        {this.state.devices}
+        <div className="device-wrapper">
+          {this.state.devices}
+        </div>
       </div>
     )
   }

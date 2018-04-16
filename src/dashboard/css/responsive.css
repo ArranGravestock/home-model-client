@@ -36,6 +36,10 @@
         padding-top: 0;
     }
 
+    .nav-button-close {
+        display: none;
+    }
+
     .content {
         display: flex;
         text-align: left;
@@ -67,6 +71,7 @@
         max-width: 100%;
         height: 30vh;
     }
+
 }
 
 /*change em size for each screen*/
