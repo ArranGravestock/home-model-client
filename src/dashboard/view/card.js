@@ -274,15 +274,43 @@ class StatCard extends Component {
 }
 
 class DeviceCard extends Component {
+
+    state = {
+        id: this.props.id
+    }
+
     updateDevice = (name, id) => {
         localStorage.deviceid = id;
         localStorage.device = name;
     }
+
+    removeDevice = () => {
+        fetch(`http://localhost:3000/removedevice/${this.state.id}`, 
+        {
+            method: 'PUT', 
+            credentials: 'include',
+            headers: {
+                'content-type':'application/json',
+                'Access-Control-Allow-Origin':'localhost:3001',
+            }
+        })
+        .then(() => {
+            //success
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+
     render() {
         return (
             <div className="card card-device">
-            <div className="card-header">
+            <div className="card-header" style={{display: 'flex', flexWrap: 'column', justifyContent: 'space-between'}}>
                 <h1>{this.props.title}</h1>
+                <div onClick={() => this.removeDevice()}>
+                    <i className="fas fa-times" style={{cursor: 'pointer'}}/>
+                </div>
             </div>
             <div className="card-content">
                 <button className="button-blue" onClick={() => this.updateDevice(this.props.title, this.props.id)}>Select</button>
