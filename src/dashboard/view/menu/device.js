@@ -19,8 +19,15 @@ class Device extends Component {
     })
   }
 
+  removeMessage = (id) => {
+    console.log(id);
+    this.setState(prevState => ({
+      messages: this.state.messages.filter((x,i) => i !== id-1 )
+    }))
+  }
+
   pushMessage = (message, errorType) => {
-    var errCard = <ErrorCard key={Date.now()} error={message} type={errorType}/>
+    var errCard = (<li key={Date.now()}><ErrorCard error={message} type={errorType}/></li>)
 
     this.setState(prevState => ({
       messages: [...prevState.messages, errCard]
@@ -31,7 +38,7 @@ class Device extends Component {
       this.setState(prevState => ({
         messages: [...prevState.messages.slice(1, prevState.length)]
       }))
-    }, 5000)
+    }, 3500)
   }
 
   removeDevice = (id) => {
@@ -118,7 +125,9 @@ class Device extends Component {
   render() {
     return (
       <div>
-        {this.state.messages}
+        <ul className="status-messages">
+          {this.state.messages}
+        </ul>
         <div className="card card-text">
           <div className="card-content">
               <form style={{display: 'flex', flexDirection: 'column'}}>

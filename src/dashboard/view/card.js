@@ -101,8 +101,8 @@ class ChartCard extends Component {
 class ErrorCard extends Component {
     render() {
         return (
-            <div className={`card card-error ${this.props.type}`}>
-                <div className={`card-icon card-${this.props.type}-icon `} >
+            <div className={`card-error ${this.props.type}`}>
+                <div className={`card-icon card-${this.props.type}-icon`} >
                 
                 </div>
                 <div className="card-error-text">
