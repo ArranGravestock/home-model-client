@@ -35,9 +35,9 @@
     text-decoration: none;
 }
 
-.nav-sidebar-list > li > a > .fa {
-    font-size: 1em;
-    width: 2em
+.nav-sidebar-list > li > a > .svg-inline--fa {
+    text-align: left;
+    width: 3em;
 }
 
 .nav-sidebar-list > li > a:hover {
@@ -72,7 +72,7 @@
 
 /*states for hiding and displaying elements*/
 .nav-hidden-true {
-    width: auto;
+    width: 70vw;
 }
 
 .nav-hidden-false {

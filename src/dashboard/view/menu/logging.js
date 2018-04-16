@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {ErrorCard} from '../card';
+import '../../css/logging.css'
 
 
 class Logging extends Component {
@@ -69,8 +70,8 @@ class Logging extends Component {
             <div className="card-header">
                 <h1>Data Logging</h1>
             </div>
-            <div className="card-content">
-                <ReactTable className="-striped -highlight" data={this.state.data} columns={this.columns} filterable={true} resizable={false} style={{ height: 'calc(100vh - 11.5em)',}}/>
+            <div className="card-content" style={{padding: 0}}>
+                <ReactTable className="-striped -highlight" data={this.state.data} columns={this.columns} filterable={true} resizable={false} style={{ height: 'calc(100vh - 10em)',}}/>
             </div>
         </div>
       </div>

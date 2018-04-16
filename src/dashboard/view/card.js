@@ -176,11 +176,8 @@ class StatsDoughnut extends Component {
 
         return (
         <div className="card card-stats-doughnut">
-            <div className="card-header">
-                <h1>{this.props.title}</h1>
-            </div>
             <div className="card-content">
-                <Pie data={ChartData} options={this.ChartOptions}/>
+                <Pie data={ChartData} options={this.ChartOptions} style={{width: '30em', height: '30em'}}/>
             </div>
         </div>
         )
@@ -250,8 +247,8 @@ class StatCard extends Component {
         var {icon, title} = this.props;
         
         var iconStyle = {
-          color: this.props.color,
-          background: this.props.color
+          color: '#fff',
+          background: this.props.color,
         };
 
         var titleStyle = {
@@ -262,7 +259,7 @@ class StatCard extends Component {
           
           <div className="basic-card-container">
             <div className="icon" style={iconStyle}>
-              <i className={icon} aria-hidden="true"></i>
+              <i className={icon}/>
             </div>
             
             <div className="obj">

@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
 import React, {Component} from 'react';
 import '../css/nav.css';
-import FontAwesome from 'react-fontawesome';
 
 const items = [
-  {link: "/home", icon: "home", name: "home"},
-  {link: "/device", icon: "tablet", name: "devices"},
-  {link: "/logs", icon: "calendar", name: "data logging"},
-  {link: "/sensors", icon: "user", name: "sensors"},
-  {link: "/lights", icon: "lightbulb-o", name: "lights"},
-  {link: "/remotes", icon: "toggle-on", name: "remotes"},
+  {link: "/home", icon: "fas fa-home", name: "home"},
+  {link: "/device", icon: "fas fa-mobile-alt", name: "devices"},
+  {link: "/logs", icon: "far fa-clock", name: "data logging"},
+  {link: "/sensors", icon: "fas fa-eye", name: "sensors"},
+  {link: "/lights", icon: "far fa-lightbulb", name: "lights"},
+  {link: "/remotes", icon: "fas fa-toggle-off", name: "remotes"},
 ]
 
 class Nav extends Component {
@@ -17,7 +16,7 @@ class Nav extends Component {
   navItems = items.map((item, i) => 
     <li key={i} onClick={item.onClick}>
       <Link to={`/auth${item.link}`}>
-          <FontAwesome name={item.icon}/>
+          <i className={item.icon}/>
           <span>{item.name}</span>
       </Link>
     </li>

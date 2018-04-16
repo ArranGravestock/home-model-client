@@ -7,8 +7,9 @@
 }
 
 .card-login {
-    max-width: 30%;
-    min-width: 20%;
+    max-width: 40%;
+    min-width: 200px;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

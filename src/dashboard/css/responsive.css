@@ -1,5 +1,5 @@
 /*desktop nav pushes instead of overlay*/
-@media (min-width: 768px) {
+@media (min-width: 1048px) {
 
     .controls {
         justify-content: flex-end;
@@ -61,15 +61,8 @@
         width: 100%;
     }
 
-    .content > .card-chart {
-        width: calc(50% - 2em);
-    }
-
-    /*causes weird stretching*/
-    .card > .card-content > canvas {
-        min-width: 100%;
-        max-width: 100%;
-        height: 30vh;
+    .card-stats-doughnut {
+        display: inherit;
     }
 
 }
