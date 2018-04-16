@@ -65,6 +65,10 @@
         display: inherit;
     }
 
+    .content > .card-chart {
+        width: calc(50% - 2em);
+    }
+
 }
 
 /*change em size for each screen*/
@@ -74,7 +78,7 @@
     }
 
     .content > .card-chart {
-        width: calc(33% - 1.63em);
+        width: calc(33% - 1.67em);
     }
 }
 

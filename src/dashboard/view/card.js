@@ -284,31 +284,13 @@ class DeviceCard extends Component {
         localStorage.device = name;
     }
 
-    removeDevice = () => {
-        fetch(`http://localhost:3000/removedevice/${this.state.id}`, 
-        {
-            method: 'PUT', 
-            credentials: 'include',
-            headers: {
-                'content-type':'application/json',
-                'Access-Control-Allow-Origin':'localhost:3001',
-            }
-        })
-        .then(() => {
-            //success
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
-
 
     render() {
         return (
             <div className="card card-device">
             <div className="card-header" style={{display: 'flex', flexWrap: 'column', justifyContent: 'space-between'}}>
                 <h1>{this.props.title}</h1>
-                <div onClick={() => this.removeDevice()}>
+                <div onClick={this.props.click}>
                     <i className="fas fa-times" style={{cursor: 'pointer'}}/>
                 </div>
             </div>

@@ -10,24 +10,70 @@ class Device extends Component {
 
   state = {
     devicetoken: '',
+    messages: []
+  }
+
+  removeItem = (id) => {
+    this.setState({
+      devices: this.state.devices.filter((x,i) => i !== id-1 )
+    })
+  }
+
+  pushMessage = (message, errorType) => {
+    var errCard = <ErrorCard key={Date.now()} error={message} type={errorType}/>
+
+    this.setState(prevState => ({
+      messages: [...prevState.messages, errCard]
+    }))
+
+    //remove message after 3 seconds
+    setTimeout( () => {
+      this.setState(prevState => ({
+        messages: [...prevState.messages.slice(1, prevState.length)]
+      }))
+    }, 5000)
+  }
+
+  removeDevice = (id) => {
+    fetch(`http://localhost:3000/removedevice/${id}`, 
+    {
+        method: 'PUT', 
+        credentials: 'include',
+        headers: {
+          'content-type':'application/json',
+          'Access-Control-Allow-Origin':'localhost:3001',
+        }
+    })
+    .then(res => {
+      if (res.ok) {
+        this.removeItem(id);
+      } else {
+        this.pushMessage(`${res.statusText} - Unable to remove device: ${id}`, "warning")
+      }
+    })
+    .catch(err => {
+      this.pushMessage(err, "error")
+    })
   }
 
   fetchDevices = () => {
-    fetch(`http://localhost:3000/devices`, {credentials: 'include', headers: {
-      'content-type':'application/json',
-      'Access-Control-Allow-Origin':'localhost:3001',
-  },})
+    fetch(`http://localhost:3000/devices`, {credentials: 'include', 
+      headers: {
+        'content-type':'application/json',
+        'Access-Control-Allow-Origin':'localhost:3001',
+      }
+    })
     .then(res => {
       if (res.ok && res.status !== 204) {
         return res.json()
       } else {
-        throw Error(res.statusText)
+        this.pushMessage(res.statusText, "error")
       }
     })
     .then(json => {
       var devices = json.map(name => {
         return(
-          <DeviceCard key={name.DeviceID} title={name.DeviceName} id={name.DeviceID}/>
+          <DeviceCard key={name.DeviceID} title={name.DeviceName} id={name.DeviceID} click={() => this.removeDevice(name.DeviceID)}/>
         )
       })
       this.setState({devices: devices})
@@ -37,28 +83,32 @@ class Device extends Component {
         //not the best way to handle this...
         //no need to do anything at the moment...
       } else {
-        var errCard = <ErrorCard error={`${err.message}`} type="error"/>
-        this.setState({errors: errCard})
+        this.pushMessage(err.message, "error")
       }
     })
   }
 
   componentWillMount() {
-    this.fetchDevices(); 
+    this.fetchDevices();
+
   }
 
   registerDevice = (e) => {
       e.preventDefault();
-      fetch(`http://localhost:3000/registerdevice/${this.state.devicetoken}`, {method: 'POST', credentials: 'include', headers: { 'Access-Control-Allow-Origin':'localhost:3001'}}).then(
-          () => {
-              alert("new device registered");
-              this.fetchDevices();
+      fetch(`http://localhost:3000/registerdevice/${this.state.devicetoken}`, {method: 'POST', credentials: 'include', 
+      headers: { 'Access-Control-Allow-Origin':'localhost:3001'}})
+      .then(res => {
+          if (res.ok) {
+            this.pushMessage("new device registered", "success")
+            this.fetchDevices();
+          } else {
+            this.pushMessage("something unexpected happened!", "warning")
           }
-      ).catch(
-          () => {
-              alert("device token incorrect!");
-          }
+        }
       )
+      .catch(() => {
+        this.pushMessage("device token is incorrect", "warning")
+      })
   }
 
   handleChange = prop => (event) => {
@@ -68,7 +118,7 @@ class Device extends Component {
   render() {
     return (
       <div>
-        {this.state.errors}
+        {this.state.messages}
         <div className="card card-text">
           <div className="card-content">
               <form style={{display: 'flex', flexDirection: 'column'}}>
