@@ -73,6 +73,8 @@ class Device extends Component {
     .then(res => {
       if (res.ok && res.status !== 204) {
         return res.json()
+      } else if (res.status === 204) {
+        this.pushMessage("No devices found", "info")
       } else {
         this.pushMessage(res.statusText, "error")
       }
