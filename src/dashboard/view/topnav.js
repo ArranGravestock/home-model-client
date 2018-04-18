@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../css/controls.css';
 import Nav from './nav';
 import {withRouter} from 'react-router-dom';
 import Wrapper from './wrapper';

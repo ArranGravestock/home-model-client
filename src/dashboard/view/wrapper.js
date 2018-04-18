@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import '../css/wrapper.css';
 import Home from './menu/home';
 import Lights from './menu/lights';
 import Sensors from './menu/sensors';

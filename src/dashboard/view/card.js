@@ -1,8 +1,5 @@
-import '../css/card.css';
 import  React, {Component} from 'react';
 import {Line, Pie, Bar} from 'react-chartjs';
-
-import '../../css/button.css'
 
 class ChartCard extends Component {
 

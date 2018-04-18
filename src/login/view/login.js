@@ -3,11 +3,6 @@ import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import 'whatwg-fetch';
 
-import '../css/login.css'
-import '../../css/button.css'
-
-
-
 import Visibility from 'material-ui-icons/Visibility'
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import IconButton from 'material-ui/IconButton';
@@ -95,9 +90,7 @@ class LoginForm extends Component {
                     <div className="card-header">
                         <h1>Login</h1>
                     </div>
-                    <div className="card-error">
-                    {this.state.error !== '' ? (<p style={{color: '#f44336'}}>this.state.error</p>) : ('')}
-                    </div>
+                    
                     <div className="card-content">
                         
                         <form className="login-controls">

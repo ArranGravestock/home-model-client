@@ -3,8 +3,6 @@ import 'whatwg-fetch';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {ErrorCard} from '../card';
-import '../../css/logging.css'
-
 
 class Logging extends Component {
 

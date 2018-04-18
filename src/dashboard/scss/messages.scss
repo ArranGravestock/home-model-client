@@ -1,0 +1,37 @@
+/*icons for error types*/
+.info {
+    color: #059;
+    background-color: #BEF;
+}
+
+.card-info-icon::before {
+    font-family: fontawesome;
+    content: '\f05a';
+}
+
+.success {
+    color: #270;
+    background-color: #DFF2BF;
+}
+.card-success-icon::before {
+    font-family: fontawesome;
+    content: '\f00c';
+}
+
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.card-warning-icon::before {
+    font-family: fontawesome;
+    content: '\f071';
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.card-error-icon::before {
+    font-family: fontawesome;
+    content: '\f06a';
+}

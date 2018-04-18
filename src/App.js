@@ -6,7 +6,7 @@ import {TextCard} from './dashboard/view/card';
 import Signup from './login/view/signup';
 import {PrivateRoute} from './login/view/privateroute';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import './dashboard/css/responsive.css';
+import './scss/sass_compiled.css'
 
 //import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 /*

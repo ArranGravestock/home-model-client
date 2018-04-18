@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import React, {Component} from 'react';
-import '../css/nav.css';
 
 const items = [
   {link: "/home", icon: "fas fa-home", name: "home"},

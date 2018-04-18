@@ -7,6 +7,10 @@
         width: auto;
     }
 
+    .card-chart {
+        width: calc(50% - 2em) !important;
+    }
+
     .nav-sidebar {
         top: 0;
         padding-top: 0;
@@ -19,6 +23,7 @@
     .nav-hidden-true {
         width: 20em;
     }
+
     .nav-sidebar_title {
         text-align: center;
     }
@@ -34,6 +39,7 @@
     .wrapper {
         transition: all 0.3s ease-in-out;
         padding-top: 0;
+        margin-top: 0 !important;
     }
 
     .nav-button-close {
@@ -46,27 +52,19 @@
         flex-wrap: wrap;
         flex-direction: row;
         align-items: flex-start;
-    }
 
-    .content > .smallStats {
-        display: flex;
-        flex-wrap: wrap;
-    }
+        .smallStats {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-    .content > div {
-        width: auto;
-    }
-
-    .content > .card-light {
-        width: 100%;
+        .card-light {
+            width: 100%;
+        }
     }
 
     .card-stats-doughnut {
         display: inherit;
-    }
-
-    .content > .card-chart {
-        width: calc(50% - 2em);
     }
 
     .card-stats-doughnut > .card-content > canvas,
@@ -82,8 +80,8 @@
         font-size: 16px;
     }
 
-    .content > .card-chart {
-        width: calc(33% - 1.67em);
+    .card-chart {
+        width: calc(33% - 1.67em) !important;
     }
 }
 

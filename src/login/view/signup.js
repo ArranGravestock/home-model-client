@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-// import {Link, Redirect} from 'react-router-dom';
 import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-// import {fakeAuth} from './privateroute';
-import '../css/login.css'
-import '../../css/button.css'
-
-import 'whatwg-fetch';
-
 
 import Visibility from 'material-ui-icons/Visibility'
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
-
 import IconButton from 'material-ui/IconButton';
 import {FormControl} from 'material-ui/Form'
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
+
+import 'whatwg-fetch';
 
 const validateForm = (user, pass, confirm_pass, email) => {
     //regex testing

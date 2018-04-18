@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {DeviceCard, ErrorCard} from '../card';
-import '../../css/card.css';
-import '../../css/device.css'
 
 import Input, { InputLabel } from 'material-ui/Input';
 import {FormControl} from 'material-ui/Form'
