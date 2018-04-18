@@ -64,14 +64,39 @@
     }
 
     .card-stats-doughnut {
-        display: inherit;
+        .card-content {
+            height: calc( 100% - 2em );
+            display: flex;
+            canvas {
+                align-self: center;
+            }
+            
+        }
     }
 
-    .card-stats-doughnut > .card-content > canvas,
-    .card-stats-line > .card-content > canvas {
-        width: calc( 40vw - 10em ) !important;
+
+    .top-header {
+        display: flex;
+    
     }
 
+    .smallStats {
+        width: 50%;
+
+        .basic-card-container {
+            width: 100%;
+
+            .obj {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .card-stats-line {
+        width: calc( 50% - 2em );
+    }
 }
 
 /*change em size for each screen*/

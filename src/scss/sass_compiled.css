@@ -63,9 +63,11 @@
   .card-light .card-header .switch input {
     display: none; }
 
-.card-stats-doughnut > .card-content > canvas,
-.card-stats-line > .card-content > canvas {
-  width: calc(100% - 2em); }
+.card-stats-line {
+  width: calc( 100% - 2em ); }
+
+.top-header {
+  display: inherit; }
 
 .slider {
   position: relative; }
@@ -103,37 +105,6 @@
     margin: auto 0 auto 0; }
     .basic-card-container .obj .number {
       color: #444; }
-
-/*error cards*/
-.status-messages {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 3;
-  font-size: 1em; }
-  .status-messages li {
-    padding: .5em; }
-
-.card-error {
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  padding: .5em; }
-  .card-error .card-icon {
-    align-self: center;
-    padding-right: .25em; }
-  .card-error .button-close {
-    align-self: center; }
-  .card-error .card-error-text {
-    display: flex;
-    padding-right: .25em; }
-    .card-error .card-error-text .content {
-      align-self: center; }
-    .card-error .card-error-text .header h1 {
-      text-align: left;
-      text-transform: capitalize; }
 
 .card-stats-line .card-header {
   display: flex;
@@ -212,6 +183,37 @@
     .controls li li:hover {
       background-color: #374252;
       cursor: pointer; }
+
+.card-error {
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  padding: .5em; }
+  .card-error .card-icon {
+    align-self: center;
+    padding-right: .25em; }
+  .card-error .button-close {
+    align-self: center; }
+  .card-error .card-error-text {
+    display: flex;
+    padding-right: .25em; }
+    .card-error .card-error-text .content {
+      align-self: center; }
+    .card-error .card-error-text .header h1 {
+      text-align: left;
+      text-transform: capitalize; }
+
+/*error cards*/
+.status-messages {
+  position: absolute;
+  right: 0;
+  top: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 3;
+  font-size: 1em; }
+  .status-messages li {
+    padding: .5em; }
 
 /*icons for error types*/
 .info {
@@ -345,12 +347,24 @@
     .content .card-light {
       width: 100%; }
 
-  .card-stats-doughnut {
-    display: inherit; }
+  .card-stats-doughnut .card-content {
+    height: calc( 100% - 2em );
+    display: flex; }
+    .card-stats-doughnut .card-content canvas {
+      align-self: center; }
 
-  .card-stats-doughnut > .card-content > canvas,
-  .card-stats-line > .card-content > canvas {
-    width: calc( 40vw - 10em ) !important; } }
+  .top-header {
+    display: flex; }
+
+  .smallStats {
+    width: 50%; }
+    .smallStats .basic-card-container {
+      width: 100%; }
+      .smallStats .basic-card-container .obj {
+        width: 100%; } }
+@media (min-width: 1280px) {
+  .card-stats-line {
+    width: calc( 50% - 2em ); } }
 /*change em size for each screen*/
 @media (min-width: 1920px) {
   body {
@@ -364,12 +378,6 @@
 @media (min-width: 7680px) {
   body {
     font-size: 128px; } }
-.content {
-  text-align: left; }
-
-.wrapper {
-  margin-top: 5em; }
-
 .wrapper-login {
   display: flex;
   justify-content: center;
@@ -437,5 +445,11 @@
 
 .rt-noData {
   z-index: 0 !important; }
+
+.wrapper {
+  margin-top: 5em; }
+
+.content {
+  text-align: left; }
 
 /*# sourceMappingURL=sass_compiled.css.map */

@@ -99,9 +99,13 @@
     }
 }
 
-.card-stats-doughnut > .card-content > canvas,
-.card-stats-line > .card-content > canvas {
-    width: calc(100% - 2em);
+.card-stats-line {
+    width: calc( 100% - 2em );
+}
+
+.top-header {
+    display: inherit; 
+    
 }
 
 
@@ -158,55 +162,6 @@
 
         .number {
             color: #444;
-        }
-    }
-}
-
-
-/*error cards*/
-
-.status-messages {
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 3;
-    font-size: 1em;
-
-    li {
-        padding: .5em;
-    }
-}
-
-.card-error {
-    border-radius: 2px;
-    display: flex;
-    justify-content: center;
-    padding: .5em;
-
-    .card-icon {
-        align-self: center;
-        padding-right: .25em;
-    }
-
-    .button-close {
-        align-self: center;
-    }
-
-    .card-error-text {
-        display: flex;
-        padding-right: .25em;
-
-        .content {
-            align-self: center;
-        }
-
-        .header {
-            h1 {
-                text-align: left;
-                text-transform: capitalize;
-            }
         }
     }
 }

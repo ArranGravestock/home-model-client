@@ -32,8 +32,7 @@ class Logging extends Component {
         console.log(err);
       })
     } else {
-      var errCard = <ErrorCard error="no device found" type="warning"/>
-      this.setState({err: errCard})
+      console.log("no device has been selected");
     }
   }
 
@@ -62,7 +61,6 @@ class Logging extends Component {
 
     return(
       <div>
-        {this.state.err}
         <div className="card card-misc">
           
             <div className="card-header">

@@ -17,13 +17,6 @@ class Device extends Component {
     })
   }
 
-  removeMessage = (id) => {
-    console.log(id);
-    this.setState(prevState => ({
-      messages: this.state.messages.filter((x,i) => i !== id-1 )
-    }))
-  }
-
   pushMessage = (message, errorType) => {
     var errCard = (<li key={Date.now()}><ErrorCard error={message} type={errorType}/></li>)
 
@@ -53,7 +46,7 @@ class Device extends Component {
       if (res.ok) {
         console.log(localStorage.deviceid);
         console.log(id);
-        if (parseInt(localStorage.deviceid) === parseInt(id)) {
+        if (Number(localStorage.deviceid) === Number(id)) {
           localStorage.clear();
         }
         this.removeItem(id);
@@ -92,7 +85,7 @@ class Device extends Component {
         this.setState({devices: devices})
     })
     .catch(err => {
-      if (err.message == "NO_CONTENT") {
+      if (err.message === "NO_CONTENT") {
         this.pushMessage("no content found", "info")
       } else {
         this.pushMessage(err.message, "error")

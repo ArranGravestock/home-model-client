@@ -3,7 +3,6 @@
 @import "../dashboard/scss/messages.scss";
 @import "../dashboard/scss/nav.scss";
 @import "../dashboard/scss/responsive.scss";
-@import "../dashboard/scss/wrapper.scss";
 
 @import "../login/scss/login.scss";
 @import "../login/scss/signup.scss";
@@ -14,4 +13,12 @@
 //overrides
 .rt-noData {
     z-index: 0 !important;
+}
+
+.wrapper {
+    margin-top: 5em;
+}
+
+.content {
+    text-align: left;
 }
