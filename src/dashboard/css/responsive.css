@@ -69,6 +69,10 @@
         width: calc(50% - 2em);
     }
 
+    .card > .card-content > canvas {
+        width: 60vw !important;
+    }
+
 }
 
 /*change em size for each screen*/

@@ -18,21 +18,18 @@ class Lights extends Component {
         }
       })
       .then(json => {
-        var lights = json.map(light => {
-          return(
-            <LightCard key={light.ThingID} title={light.ThingName} id={light.ThingID} toggled={light.ThingState} brightness={20}/>
-          )
-        })
-        this.setState({lights: lights})
+          var lights = json.map(light => {
+            return(
+              <LightCard key={light.ThingID} title={light.ThingName} id={light.ThingID} toggled={light.ThingState} brightness={20}/>
+            )
+          })
+          this.setState({lights: lights})
       })
       .catch(err => {
-        var errCard = <ErrorCard error={err.message} type="error"/>
-        this.setState({lights: errCard})
+        console.log(err);
       })
-
     } else {
-      var errCard = <ErrorCard error="no device found" type="warning"/>
-      this.setState({lights: errCard})
+      console.log("no device id associated with user");
     }
 }
 

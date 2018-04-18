@@ -1,6 +1,6 @@
 import '../css/card.css';
 import  React, {Component} from 'react';
-import {Line, Pie} from 'react-chartjs';
+import {Line, Pie, Bar} from 'react-chartjs';
 // import FontAwesome from 'react-fontawesome';
 
 import '../../css/button.css'
@@ -140,7 +140,9 @@ const MiscCard = ({obj, title, desc}) => (
 
 class StatsDoughnut extends Component {
     state = {
-        data: []
+        labels: [],
+        data: [],
+        renderChart: ''
     }     
 
     ChartOptions = {
@@ -160,24 +162,43 @@ class StatsDoughnut extends Component {
         })
         .then(res => res.json())
         .then(json => {
-            json.forEach(data => {
+            json.forEach(json => {
                 this.setState(prevState => ({
-                    data: [...prevState.data, {value: data.TotalCount, label: data.ThingName}]
+                    labels: [...prevState.labels, json.ThingName],
+                    data: [...prevState.data, json.TotalCount]
                 }))
-            })
+            }
+            )
         })
+        .then ( () => {
+            var data = {
+                labels: this.state.labels,
+                datasets: [
+                    {
+                        label: "Times Activated",
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "rgba(220,220,220,0.75)",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: this.state.data
+                    }
+                ]
+            }
+            this.setState({renderChart: <Bar data={data} options={this.ChartOptions}/> })
+        }
+
+        )
         .catch(err => {
             console.log(err)
         })
     }
 
     render() {
-        var ChartData = this.state.data;
 
         return (
         <div className="card card-stats-doughnut">
             <div className="card-content">
-                <Pie data={ChartData} options={this.ChartOptions} style={{width: '30em', height: '30em'}}/>
+                {this.state.renderChart}
             </div>
         </div>
         )

@@ -44,7 +44,7 @@ class Device extends Component {
   removeDevice = (id) => {
     fetch(`http://localhost:3000/removedevice/${id}`, 
     {
-        method: 'PUT', 
+        method: 'DELETE', 
         credentials: 'include',
         headers: {
           'content-type':'application/json',
@@ -53,7 +53,13 @@ class Device extends Component {
     })
     .then(res => {
       if (res.ok) {
+        console.log(localStorage.deviceid);
+        console.log(id);
+        if (parseInt(localStorage.deviceid) === parseInt(id)) {
+          localStorage.clear();
+        }
         this.removeItem(id);
+        this.pushMessage(`${id} has successfully been removed`, "success")
       } else {
         this.pushMessage(`${res.statusText} - Unable to remove device: ${id}`, "warning")
       }
@@ -74,23 +80,22 @@ class Device extends Component {
       if (res.ok && res.status !== 204) {
         return res.json()
       } else if (res.status === 204) {
-        this.pushMessage("No devices found", "info")
+        throw new Error("NO_CONTENT");
       } else {
         this.pushMessage(res.statusText, "error")
       }
     })
     .then(json => {
-      var devices = json.map(name => {
-        return(
-          <DeviceCard key={name.DeviceID} title={name.DeviceName} id={name.DeviceID} click={() => this.removeDevice(name.DeviceID)}/>
-        )
-      })
-      this.setState({devices: devices})
+        var devices = json.map(name => {
+          return(
+            <DeviceCard key={name.DeviceID} title={name.DeviceName} id={name.DeviceID} click={() => this.removeDevice(name.DeviceID)}/>
+          )
+        })
+        this.setState({devices: devices})
     })
     .catch(err => {
-      if (err.message === "No Content") {
-        //not the best way to handle this...
-        //no need to do anything at the moment...
+      if (err.message == "NO_CONTENT") {
+        this.pushMessage("no content found", "info")
       } else {
         this.pushMessage(err.message, "error")
       }
