@@ -24,7 +24,8 @@
     position: relative;
 }
 
-.card > .card-content > canvas {
+.card-stats-doughnut > .card-content > canvas,
+.card-stats-line > .card-content > canvas {
     width: calc(100% - 2em);
 }
 
@@ -233,4 +234,9 @@
 .card-error-icon::before {
     font-family: fontawesome;
     content: '\f06a';
+}
+
+.card-stats-line > .card-header {
+    display: flex;
+    justify-content: space-between;
 }

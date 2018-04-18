@@ -1,7 +1,6 @@
 import '../css/card.css';
 import  React, {Component} from 'react';
 import {Line, Pie, Bar} from 'react-chartjs';
-// import FontAwesome from 'react-fontawesome';
 
 import '../../css/button.css'
 
@@ -75,9 +74,9 @@ class ChartCard extends Component {
             labels: this.state.labels,
             datasets: [{
                 label: "untitled",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
+                fillColor: "rgba(54,65,81,0.2)",
+                strokeColor: "rgba(48,59,77,1)",
+                pointColor: "rgba(48,59,77,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
@@ -138,7 +137,105 @@ const MiscCard = ({obj, title, desc}) => (
     </div>
 )
 
-class StatsDoughnut extends Component {
+class LineChartCard extends Component {
+    state = {
+        labels: [],
+        data: [],
+        renderChart: '',
+        value: '1'
+    }     
+
+    ChartOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+    }
+
+    fetchData(fetchurl, type) {
+        fetch(fetchurl, 
+        {
+            method: 'GET', 
+            credentials: 'include',
+            headers: {
+                'content-type':'application/json',
+                'Access-Control-Allow-Origin':'localhost:3001',
+            }
+        })
+        .then(res => res.json())
+        .then(json => {
+            this.setState({
+                labels: [],
+                data: []
+            })
+            json.forEach(json => {
+                if (type === "averagedays") {
+                    this.setState(prevState => ({
+                        labels: [...prevState.labels, json.dates.slice(0,10)],
+                        data: [...prevState.data, json.average]
+                    }))
+                } else if (type === "averagehours") {
+                    this.setState(prevState => ({
+                        labels: [...prevState.labels, json.hours],
+                        data: [...prevState.data, json.average]
+                    }))
+                } else {
+                    //something's not right
+                }
+            })
+        })
+        .then ( () => {
+            var data = {
+                labels: this.state.labels,
+                datasets: [
+                    {
+                        label: "Times Activated",
+                        fillColor: "rgba(54,65,81,0.5)",
+                        strokeColor: "rgba(54,65,81,0.8)",
+                        highlightFill: "rgba(54,65,81,0.75)",
+                        highlightStroke: "rgba(54,65,81,1)",
+                        data: this.state.data
+                    }
+                ]
+            }
+            this.setState({renderChart: <Line data={data} options={this.ChartOptions}/> })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    componentWillMount () {
+        this.fetchData(`http://localhost:3000/averageforlasthours/device/${localStorage.deviceid}/thing/${this.props.thingid}/hours/24`, this.props.type);
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value}, () => {
+            if (this.state.value === "1") {
+                this.fetchData(`http://localhost:3000/averageforlasthours/device/${localStorage.deviceid}/thing/${this.props.thingid}/hours/24`, this.props.type);
+            } else if (this.state.value === "7") {
+                this.fetchData(`http://localhost:3000/averageforlastdays/device/${localStorage.deviceid}/thing/${this.props.thingid}/days/7`, this.props.type);
+            }
+        });
+    }
+
+    render() {
+
+        return (
+            <div className="card card-stats-line">
+                <div className="card-header">
+                    <h1>{this.props.title}</h1>
+                    <select value={this.state.value} onChange={this.handleChange.bind(this)}>
+                        <option value="1">Last 24 hours</option>
+                        <option value="7">Last 7 days</option>
+                    </select>
+                </div>
+                <div className="card-content">
+                    {this.state.renderChart}
+                </div>
+            </div>
+        )
+    }
+}
+class ChartBarCard extends Component {
     state = {
         labels: [],
         data: [],
@@ -151,7 +248,7 @@ class StatsDoughnut extends Component {
     }
 
     componentWillMount () {
-        fetch(`http://localhost:3000/device/${this.props.deviceid}/countallthings`, 
+        fetch(this.props.fetchurl, 
         {
             method: 'GET', 
             credentials: 'include',
@@ -163,12 +260,25 @@ class StatsDoughnut extends Component {
         .then(res => res.json())
         .then(json => {
             json.forEach(json => {
-                this.setState(prevState => ({
-                    labels: [...prevState.labels, json.ThingName],
-                    data: [...prevState.data, json.TotalCount]
-                }))
-            }
-            )
+                if (this.props.type === "count") {
+                    this.setState(prevState => ({
+                        labels: [...prevState.labels, json.ThingName],
+                        data: [...prevState.data, json.TotalCount]
+                    }))
+                } else if (this.props.type === "averagedays") {
+                    this.setState(prevState => ({
+                        labels: [...prevState.labels, json.dates.slice(0,10)],
+                        data: [...prevState.data, json.average]
+                    }))
+                } else if (this.props.type === "averagehours") {
+                    this.setState(prevState => ({
+                        labels: [...prevState.labels, json.hours],
+                        data: [...prevState.data, json.average]
+                    }))
+                } else {
+                    //something's not right
+                }
+            })
         })
         .then ( () => {
             var data = {
@@ -176,15 +286,19 @@ class StatsDoughnut extends Component {
                 datasets: [
                     {
                         label: "Times Activated",
-                        fillColor: "rgba(220,220,220,0.5)",
-                        strokeColor: "rgba(220,220,220,0.8)",
-                        highlightFill: "rgba(220,220,220,0.75)",
-                        highlightStroke: "rgba(220,220,220,1)",
+                        fillColor: "rgba(54,65,81,0.5)",
+                        strokeColor: "rgba(54,65,81,0.8)",
+                        highlightFill: "rgba(54,65,81,0.75)",
+                        highlightStroke: "rgba(54,65,81,1)",
                         data: this.state.data
                     }
                 ]
             }
-            this.setState({renderChart: <Bar data={data} options={this.ChartOptions}/> })
+            if (this.props.type === "averagehours") {
+                this.setState({renderChart: <Line data={data} options={this.ChartOptions}/> })
+            } else {
+                this.setState({renderChart: <Bar data={data} options={this.ChartOptions}/> })
+            }
         }
 
         )
@@ -196,11 +310,11 @@ class StatsDoughnut extends Component {
     render() {
 
         return (
-        <div className="card card-stats-doughnut">
-            <div className="card-content">
-                {this.state.renderChart}
+            <div className="card card-stats-doughnut">
+                <div className="card-content">
+                    {this.state.renderChart}
+                </div>
             </div>
-        </div>
         )
     }
 }
@@ -414,4 +528,4 @@ class RemoteCard extends Component {
 
 }
 
-export {ChartCard, TextCard, MiscCard, StatsDoughnut, LightCard, DeviceCard, RemoteCard, StatCard, ErrorCard};
+export {ChartCard, TextCard, MiscCard, ChartBarCard, LightCard, DeviceCard, RemoteCard, StatCard, ErrorCard, LineChartCard};

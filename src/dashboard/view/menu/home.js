@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {StatsDoughnut, StatCard} from '../card';
+import {ChartBarCard, StatCard, LineChartCard} from '../card';
 import {Link} from 'react-router-dom';
-
+import 'whatwg-fetch';
 class Tutorial extends Component {
 
   render() {
@@ -76,16 +76,43 @@ class Tutorial extends Component {
 
 class Default extends Component {
 
+  componentWillMount() {
+    fetch(`http://localhost:3000/device/1/thing/4/date/2018-04-09`, 
+    {
+        method: 'GET', 
+        credentials: 'include',
+        headers: {
+          'content-type':'application/json',
+          'Access-Control-Allow-Origin':'localhost:3001',
+        }
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+    })
+    .then(json => {
+      console.log(json);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   render() {
     return (
       <div className="content">
+      <div className="top-header" style={{display: "flex", width: "100%"}}>
         <div className="smallStats">
           <StatCard title="API Calls" icon="far fa-envelope" type="message" category="light" color="#F88369" deviceid={localStorage.deviceid}/>
           <StatCard title="Lights Registered" icon="far fa-lightbulb" type="category" category="light" color="#59B6D2" deviceid={localStorage.deviceid}/>
           <StatCard title="Remote Registered" icon="fas fa-mobile-alt" type="category" category="remote" color="#AE9CCD" deviceid={localStorage.deviceid}/>
           <StatCard title="Sensors Registered" icon="fas fa-eye" type="category" category="sensor" color="#76CBC1" deviceid={localStorage.deviceid}/>
         </div>
-        <StatsDoughnut deviceid={localStorage.deviceid}/>
+        <ChartBarCard deviceid={localStorage.deviceid} type="count" fetchurl={`http://localhost:3000/device/${localStorage.deviceid}/countallthings`}/>  
+      </div>
+        <LineChartCard title="ultrasonic" deviceid={localStorage.deviceid} thingid={4} type="averagedays"/>
+        <LineChartCard title="temperature" deviceid={localStorage.deviceid} thingid={5} type="averagedays"/>
     </div>
     )
   }
