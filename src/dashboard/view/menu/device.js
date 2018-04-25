@@ -11,10 +11,14 @@ class Device extends Component {
     messages: []
   }
 
-  removeItem = (id) => {
-    this.setState({
-      devices: this.state.devices.filter((x,i) => i !== id-1 )
-    })
+  removeItem = id => {
+    for (var i = 0; i < this.state.devices.length; i++) {
+      if (this.state.devices[i].key === id) {
+        this.setState({
+            devices: [...this.state.devices.slice(0, i), ...this.state.devices.slice(i+1)]
+        }
+      )}
+    }
   }
 
   pushMessage = (message, errorType) => {
@@ -44,9 +48,7 @@ class Device extends Component {
     })
     .then(res => {
       if (res.ok) {
-        console.log(localStorage.deviceid);
-        console.log(id);
-        if (Number(localStorage.deviceid) === Number(id)) {
+        if (localStorage.deviceid === id) {
           localStorage.clear();
         }
         this.removeItem(id);
@@ -95,7 +97,6 @@ class Device extends Component {
 
   componentWillMount() {
     this.fetchDevices();
-
   }
 
   registerDevice = (e) => {
