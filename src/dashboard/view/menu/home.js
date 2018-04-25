@@ -75,30 +75,6 @@ class Tutorial extends Component {
 }
 
 class Default extends Component {
-
-  componentWillMount() {
-    fetch(`http://localhost:3000/device/1/thing/4/date/2018-04-09`, 
-    {
-        method: 'GET', 
-        credentials: 'include',
-        headers: {
-          'content-type':'application/json',
-          'Access-Control-Allow-Origin':'localhost:3001',
-        }
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-    })
-    .then(json => {
-      console.log(json);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-
   render() {
     return (
       <div className="content">
