@@ -12,7 +12,7 @@ import 'whatwg-fetch';
 
 const validateForm = (user, pass, confirm_pass, email) => {
     //regex testing
-    return false;
+    return true;
 }
 
 class Signup extends Component {
@@ -27,11 +27,22 @@ class Signup extends Component {
     }
 
     register = (e) => {
-        e.preventDefault();
-        const {email, username, password, confirm_pass} = this.state.trim();
 
-        if(validateForm(email, username, password, email, confirm_pass)) {
-            fetch(`http://localhost:3000/signup?username=${username}&password=${password}&email=${email}`, {method: 'POST', headers: { 'Access-Control-Allow-Origin':'localhost:3001',}})
+        const {email, username, password, confirm_pass} = this.state;
+
+            fetch(`http://localhost:3000/signup`, 
+            {
+                method: 'POST', 
+                headers: { 
+                    'Access-Control-Allow-Origin':'localhost:3001',
+                    'content-type':'application/json',
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                    password: this.state.password,
+                    email: this.state.email
+                })
+            })
             .then(res => {
                 if (res.ok) {
                     alert("Successfully registered!");
@@ -39,7 +50,6 @@ class Signup extends Component {
                     alert("something went wrong!");
                 }
             })
-        }
     }
 
     handleChange = prop => e => {
