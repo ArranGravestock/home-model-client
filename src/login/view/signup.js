@@ -11,8 +11,20 @@ import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import 'whatwg-fetch';
 
 const validateForm = (user, pass, confirm_pass, email) => {
-    //regex testing
-    return true;
+    return new Promise((resolve, reject) => {
+        var emailreg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!emailreg.test(email.trim())) {
+            reject("Email is invalid!");
+        } else if (pass !== confirm_pass) {
+            reject("Passwords do not match!");
+        } else if (pass.length !== 8) {
+            reject("Password length is shorter than 8!");
+        } else {
+            resolve(true);
+        }
+    })
+    
 }
 
 class Signup extends Component {
@@ -27,9 +39,16 @@ class Signup extends Component {
     }
 
     register = (e) => {
+        this.setState({
+            username: this.state.username.trim(),
+            password: this.state.password.trim(),
+            confirm_pass: this.state.confirm_pass.trim(),
+            email: this.state.email.trim()
+        })
+        const {username, password, confirm_pass, email} = this.state;
 
-        const {email, username, password, confirm_pass} = this.state;
-
+        validateForm(username, password, confirm_pass, email)
+        .then(() => {
             fetch(`http://localhost:3000/signup`, 
             {
                 method: 'POST', 
@@ -50,6 +69,11 @@ class Signup extends Component {
                     alert("something went wrong!");
                 }
             })
+        })
+        .catch(err => {
+            alert(err)
+        })
+
     }
 
     handleChange = prop => e => {
