@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import 'whatwg-fetch';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {ErrorCard} from '../card';
 
 class Logging extends Component {
 

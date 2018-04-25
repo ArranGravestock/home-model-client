@@ -8,9 +8,12 @@ const items = [
   {link: "/sensors", icon: "fas fa-eye", name: "sensors"},
   {link: "/lights", icon: "far fa-lightbulb", name: "lights"},
   {link: "/remotes", icon: "fas fa-toggle-off", name: "remotes"},
+  {link: "/admin", icon: "fas fa-toggle-off", name: "admin"},
 ]
 
 class Nav extends Component {
+
+  state = {}
 
   navItems = items.map((item, i) => 
     <li key={i} onClick={item.onClick}>

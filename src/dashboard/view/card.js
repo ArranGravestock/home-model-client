@@ -416,7 +416,6 @@ class DeviceCard extends Component {
         localStorage.device = name;
     }
 
-
     render() {
         return (
             <div className="card card-device">

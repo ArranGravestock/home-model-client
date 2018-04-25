@@ -6,6 +6,7 @@ import Sensors from './menu/sensors';
 import Remotes from './menu/remotes';
 import {Device} from './menu/device';
 import Logging from './menu/logging';
+import Admin from './menu/admin';
 
 const Wrapper = ({className}) => (
   <div className={className}>
@@ -15,6 +16,7 @@ const Wrapper = ({className}) => (
     <Route path="/auth/sensors" component={Sensors}/>
     <Route path="/auth/remotes" component={Remotes}/>
     <Route path="/auth/device" component={Device}/>
+    <Route path="/auth/admin" component={Admin}/>
   </div>
 )
 
