@@ -14,9 +14,9 @@ class Device extends Component {
   removeItem = id => {
     for (var i = 0; i < this.state.devices.length; i++) {
       if (this.state.devices[i].key === id) {
-        this.setState(prevState => ({
-            devices: [...prevState.devices.slice(0, i), ...prevState.devices.slice(i+1)]
-        })
+        this.setState({
+            devices: [...this.state.devices.slice(0, i), ...this.state.devices.slice(i+1)]
+        }
       )}
     }
   }
