@@ -30,6 +30,24 @@ npm start
 "whatwg-fetch": "^2.0.3"
 ```
 
+## Todo
+```
+-Update documentation using JSDOC
+-Use web sockets over polling
+-Improve error handling
+-Add register device administrators to remove and add guests easier
+-Registering of a new component
+-Expansion of the tutorial page, favouring the use of driver.js
+-Further customisability of the homepage so that elements can be hidden or added
+-Dark and light mode in settings
+-Resetting account details
+-Updating password and email through settings
+-Push notifcations to mobile devices
+-Two-factor authentication
+-Update layout to use a combination of flex and grid
+-Add react-redux
+```
+
 ## Authors
 - Arran Gravestock
 
