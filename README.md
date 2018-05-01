@@ -1,5 +1,5 @@
 # Client Home-Model
-A web app client with integration with home-model-api, using restful practice to retrieve data from a mysql database. The client is used to perceive any data or to control parts from the server `home-model-server`, respentation through graphs and statistics to provide knowledge about their smart hub.
+A web app client with integration with home-model-api, using `what-wg` to retrieve data from a mysql database. The client is used to perceive any data or to control parts from the server `home-model-server`, respentation through graphs and statistics to provide knowledge about their smart hub. It is a basic implementation, for which shows how data can be used on a web client supplied by the API. It is possible to use the `home-model-api` to create your own web application for the `home-model-server`.
 
 ## Installation for development
 Install dependencies:
