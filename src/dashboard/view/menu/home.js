@@ -87,8 +87,8 @@ class Default extends Component {
           </div>
           <ChartBarCard deviceid={localStorage.deviceid} type="count" fetchurl={`http://localhost:3000/device/${localStorage.deviceid}/countallthings`}/>  
         </div>
-        <LineChartCard title="ultrasonic" deviceid={localStorage.deviceid} thingid={4} type="averagedays"/>
-        <LineChartCard title="temperature" deviceid={localStorage.deviceid} thingid={5} type="averagedays"/>
+        <LineChartCard title="ultrasonic" deviceid={localStorage.deviceid} thingid={29} type="averagedays"/>
+        <LineChartCard title="temperature" deviceid={localStorage.deviceid} thingid={26} type="averagedays"/>
     </div>
     )
   }

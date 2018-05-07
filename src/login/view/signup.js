@@ -18,7 +18,7 @@ const validateForm = (user, pass, confirm_pass, email) => {
             reject("Email is invalid!");
         } else if (pass !== confirm_pass) {
             reject("Passwords do not match!");
-        } else if (pass.length !== 8) {
+        } else if (pass.length < 8) {
             reject("Password length is shorter than 8!");
         } else {
             resolve(true);
